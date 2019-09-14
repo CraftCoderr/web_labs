@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <header>
+            <iframe src="header.html" onload="this.before((this.contentDocument.body||this.contentDocument).children[0]);this.remove()"></iframe>
+    </header>
+    
+
+    <main>
+        <h2>Laboratory work 1. HTML & CSS</h2>
+        <div id="content">
+            <img id="photo" src="photo.jpg" alt="Photo">
+            <div id="description">
+                <p>Nikita Klyshko</p>
+                <p>Group IS/b-17-2-о</p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+            <iframe src="footer.html" onload="this.before((this.contentDocument.body||this.contentDocument).children[0]);this.remove()"></iframe>
+    </footer>
+</body>
+</html>
