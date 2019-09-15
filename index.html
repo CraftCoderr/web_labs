@@ -5,12 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <!-- <link rel="stylesheet" href="css/header.css"> -->
     <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
 </head>
 <body>
-    <header>
-            <iframe src="header.html" onload="this.before((this.contentDocument.body||this.contentDocument).children[0]);this.remove()"></iframe>
-    </header>
+    <header w3-include-html="header.html""></header>
     
 
     <main>
@@ -24,8 +25,7 @@
         </div>
     </main>
 
-    <footer>
-            <iframe src="footer.html" onload="this.before((this.contentDocument.body||this.contentDocument).children[0]);this.remove()"></iframe>
-    </footer>
+    <script src="js/header.js"></script>
+    <script src="js/include.js"></script>
 </body>
 </html>

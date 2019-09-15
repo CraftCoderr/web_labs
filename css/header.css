@@ -1,0 +1,36 @@
+#nav-bar {
+    overflow: hidden;
+    background-color: #4CAF50;
+    position: relative;
+    color: white;
+}
+
+#nav-bar a {
+    color: white;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    display: block;
+}
+  
+#nav-bar a.icon {
+    background: black;
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+#nav-bar a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+#nav {
+    display: none;
+}
+
+#logo {
+    font-weight: bold;
+    margin-left: 2rem;
+}
