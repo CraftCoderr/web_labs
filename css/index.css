@@ -28,7 +28,7 @@ main {
   width: 100%;
 }
 
-@media only screen and (min-width: 768px) {
+@media screen and (min-width: 768px) {
   #content {
     flex-direction: row;
     align-items: center;
