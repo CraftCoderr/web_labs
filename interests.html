@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>L/W > Interests</title>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/interests.css">
+    <link rel="stylesheet" href="css/header.css">
+</head>
+<body>
+    <header w3-include-html="header.html"></header>
+    
+    <main>
+        <h2 id="title">Interests</h2>
+        <div id="categorylist">
+            <ul>
+                <li class="categorylink">
+                    <a href="#hobby">HOBBY</a>
+                </li>
+                <li class="categorylink">
+                    <a href="#book">BOOK</a>
+                </li>
+                <li class="categorylink">
+                    <a href="#music">MUSIC</a>
+                </li>
+                <li class="categorylink">
+                    <a href="#film">FILM</a>
+                </li>
+            </ul>
+        </div>
+    
+        <div id="categories">
+            <div class="category">
+                <a id="hobby"></a>
+                <h3>Hobby</h3>
+                <img src="img/hobby.jpg" alt="I'm in the cave.">
+            </div>
+            <div class="category">
+                <a id="book"></a>
+                <h3>Book</h3>
+                <img src="img/book.jpg" alt="Kent Beck. Test Driven Development. Book.">
+            </div>
+            <div class="category">
+                <a id="music"></a>
+                <h3>Music</h3>
+                <img src="img/music.jpg" alt="Mashina Vremeni. Musical group.">
+            </div>
+            <div class="category">
+                <a id="film"></a>
+                <h3>Film</h3>
+                <img src="img/film.jpg" alt="The Hitman's Bodyguard. Film.">
+            </div>
+        </div>
+    </main>
+
+    <script src="js/w3.js"></script>
+    <script>
+        w3.includeHTML();
+    </script>
+    <script src="js/jquery-3.4.1.js"></script>
+    <script src="js/header.js"></script>
+</body>
+</html>
