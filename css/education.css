@@ -1,0 +1,22 @@
+@import "body.css";
+
+main {
+  margin: 32px auto 0 auto;
+  max-width: 500px;
+}
+
+table {
+  max-width: 400px;
+  background-color: #eeeeee;
+  border-collapse: collapse;
+  margin: 0 auto;
+}
+
+th {
+  text-align: center;
+}
+
+td, th {
+  border: 2px solid #999999;
+  padding: 8px;
+}
