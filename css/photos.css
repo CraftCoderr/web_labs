@@ -1,0 +1,50 @@
+@import "body.css";
+
+.container {
+  width: 100%;
+  max-width: 963px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.photo {
+  width: 33%;
+  margin-right: 0.5%;
+  position: relative;
+}
+
+.photo > img {
+  width: 100%;
+}
+
+.description > p {
+  position: relative;
+  z-index: 1;
+  display: block;
+  color: white;
+  font-weight: bold;
+  margin-top: 46%;
+  text-align: center;
+  font-size: 18px;
+}
+
+.description {
+  position: absolute;
+  background-color: black;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 4px; /*why .photo block height is width + 4px?*/
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.photo:hover > .description {
+  opacity: 0.75;
+}
+
+.photo:nth-child(3n) {
+  margin-right: 0;
+}
