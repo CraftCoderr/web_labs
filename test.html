@@ -15,12 +15,35 @@
 
     <main>
         <h2>Тест по дисциплине "Теория вероятностей и математическая статистика"</h2>
-        <form method="POST" action="test.php">
+        <form action="mailto:n-klyshko@mail.ru" method="GET">
+            <div>
+                <label for="fio">Фамилия Имя Отчество</label>
+                <input type="text" id="fio" name="fio">
+                <label for="grp">Группа</label>
+                <select id="grp">
+                    <optgroup label="1 курс">
+                        <option value="">ИС-11</option>
+                        <option value="">ИС-12</option>
+                    </optgroup>
+                    <optgroup label="2 курс">
+                        <option value="">ИС-21</option>
+                        <option value="">ИС-22</option>
+                    </optgroup>
+                    <optgroup label="3 курс">
+                        <option value="">ИС-31</option>
+                        <option value="">ИС-32</option>
+                    </optgroup>
+                    <optgroup label="4 курс">
+                        <option value="">ИС-41</option>
+                        <option value="">ИС-42</option>
+                    </optgroup>
+                </select>
+            </div>
             <div class="question">
                 <h4>Вопрос 1</h4>
                 <p>Мощность критерия – это:</p>
                 <!--вероятность не допустить ошибку второго рода-->
-                <textarea></textarea>
+                <textarea id="answer1" name="answer1"></textarea>
             </div>
             <div class="question">
                 <h4>Вопрос 2</h4>
