@@ -6,12 +6,13 @@ body {
 }
 
 main {
-  margin: 1rem;
+  margin: 1rem auto 0 auto;
+  max-width: 1000px;
+  width: 95%;
 }
 
 #categorylist {
   max-width: 600px;
-  margin: 0 auto;
   height: 160px;
 }
 
