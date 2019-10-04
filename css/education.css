@@ -2,11 +2,13 @@
 
 main {
   margin: 32px auto 0 auto;
-  max-width: 500px;
+  width: 95%;
+  max-width: 850px;
 }
 
 table {
-  max-width: 400px;
+  max-width: 550px;
+  width: 95%;
   background-color: #eeeeee;
   border-collapse: collapse;
   margin: 0 auto;
@@ -20,3 +22,7 @@ td, th {
   border: 2px solid #999999;
   padding: 8px;
 }
+
+/* tr:nth-child(1), tr:nth-child(2) {
+  width: 15%;
+} */
