@@ -1,0 +1,20 @@
+@import "body.css";
+
+main {
+  margin: 32px auto 0 auto;
+  width: 95%;
+  max-width: 850px;
+}
+
+form {
+  width: 95%;
+  margin: 0 auto;
+}
+
+option {
+  padding: 12px;
+}
+
+select {
+  padding: 8px;
+}

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>L/W > Test</title>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/test.css">
+    <link rel="stylesheet" href="css/header.css">
+</head>
+<body>
+    <header w3-include-html="header.html"></header>
+
+    <main>
+        <h2>Тест по дисциплине "Теория вероятностей и математическая статистика"</h2>
+        <form method="POST" action="test.php">
+            <div class="question">
+                <h4>Вопрос 1</h4>
+                <p>Мощность критерия – это:</p>
+                <!--вероятность не допустить ошибку второго рода-->
+                <textarea></textarea>
+            </div>
+            <div class="question">
+                <h4>Вопрос 2</h4>
+                <p>Какие из названных распределений используются при проверке гипотезы о числовом значении математического ожидания при неизвестной дисперсии?</p>
+                <div>
+                    <input type="radio" id="radio1">
+                    <label for="radio1">распределение Стьюдента</label>
+                </div>
+                <div>
+                    <input type="radio" id="radio2">
+                    <label for="radio2">распределение Фишера</label>
+                </div>
+                <div>
+                    <input type="radio" id="radio3">
+                    <label for="radio3">нормальное распределение</label>
+                </div>
+                <div>
+                    <input type="radio" id="radio4">
+                    <label for="radio4">распределение хи-квадрат</label>
+                </div>
+            </div>
+            <div class="question">
+                <h4>Вопрос 3</h4>
+                <p>Какое из утверждений относительно генеральной и выборочной совокупностей является верным?</p>
+                <select>
+                    <option disabled selected>Выберите ответ</option>
+                    <option>выборочная совокупность – часть генеральной</option>
+                    <option>генеральная совокупность – часть выборочной</option>
+                </select>
+            </div>
+            <p>
+                <input type="submit" value="Отправить">
+                <input type="reset" value="Очистить">
+            </p>
+        </form>
+    </main>
+
+    <script src="js/w3.js"></script>
+    <script>
+        w3.includeHTML();
+    </script>
+    <script src="js/jquery-3.4.1.js"></script>
+    <script src="js/header.js"></script>
+</body>
+</html>
