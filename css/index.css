@@ -16,6 +16,7 @@ main {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  width: 100%;
 }
 
 #photo {
@@ -25,7 +26,6 @@ main {
 #description {
   font-size: large;
   padding: 2rem;
-  width: 100%;
 }
 
 @media screen and (min-width: 768px) {
