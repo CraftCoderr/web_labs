@@ -1,6 +1,6 @@
 @import "body.css";
 
-.container {
+#container {
   width: 100%;
   max-width: 963px;
   margin: 0 auto;
