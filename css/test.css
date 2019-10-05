@@ -20,16 +20,16 @@ select {
 }
 
 #fio {
-    display: block;
-    margin: 0.5rem 0;
-    width:  95%;
+  display: block;
+  margin: 0.5rem 0;
+  width: 95%;
 }
 
 textarea {
-    width: 95%;
+  width: 95%;
 }
 
 form:last-child input {
-    padding: 8px;
-    margin-right: 1rem;
+  padding: 8px;
+  margin-right: 1rem;
 }

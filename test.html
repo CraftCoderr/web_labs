@@ -15,27 +15,27 @@
 
     <main>
         <h2>Тест по дисциплине "Теория вероятностей и математическая статистика"</h2>
-        <form action="mailto:n-klyshko@mail.ru" method="GET">
+        <form action="mailto:n-klyshko@mail.ru" method="get" enctype="text/plain">
             <div>
                 <label for="fio">Фамилия Имя Отчество</label>
                 <input type="text" id="fio" name="fio">
-                <label for="grp">Группа</label>
-                <select id="grp">
+                <label for="group">Группа</label>
+                <select id="group" name="group">
                     <optgroup label="1 курс">
-                        <option value="">ИС-11</option>
-                        <option value="">ИС-12</option>
+                        <option>ИС-11</option>
+                        <option>ИС-12</option>
                     </optgroup>
                     <optgroup label="2 курс">
-                        <option value="">ИС-21</option>
-                        <option value="">ИС-22</option>
+                        <option>ИС-21</option>
+                        <option>ИС-22</option>
                     </optgroup>
                     <optgroup label="3 курс">
-                        <option value="">ИС-31</option>
-                        <option value="">ИС-32</option>
+                        <option>ИС-31</option>
+                        <option>ИС-32</option>
                     </optgroup>
                     <optgroup label="4 курс">
-                        <option value="">ИС-41</option>
-                        <option value="">ИС-42</option>
+                        <option>ИС-41</option>
+                        <option>ИС-42</option>
                     </optgroup>
                 </select>
             </div>
@@ -49,26 +49,26 @@
                 <h4>Вопрос 2</h4>
                 <p>Какие из названных распределений используются при проверке гипотезы о числовом значении математического ожидания при неизвестной дисперсии?</p>
                 <div>
-                    <input type="radio" id="radio1">
+                    <input type="radio" id="radio1" name="answer2">
                     <label for="radio1">распределение Стьюдента</label>
                 </div>
                 <div>
-                    <input type="radio" id="radio2">
+                    <input type="radio" id="radio2" name="answer2">
                     <label for="radio2">распределение Фишера</label>
                 </div>
                 <div>
-                    <input type="radio" id="radio3">
+                    <input type="radio" id="radio3" name="answer2">
                     <label for="radio3">нормальное распределение</label>
                 </div>
                 <div>
-                    <input type="radio" id="radio4">
+                    <input type="radio" id="radio4" name="answer2">
                     <label for="radio4">распределение хи-квадрат</label>
                 </div>
             </div>
             <div class="question">
                 <h4>Вопрос 3</h4>
                 <p>Какое из утверждений относительно генеральной и выборочной совокупностей является верным?</p>
-                <select>
+                <select name="answer3">
                     <option disabled selected>Выберите ответ</option>
                     <option>выборочная совокупность – часть генеральной</option>
                     <option>генеральная совокупность – часть выборочной</option>
