@@ -1,0 +1,48 @@
+@import "body.css";
+
+main {
+  margin: 32px auto 0 auto;
+  width: 95%;
+  max-width: 850px;
+}
+
+form {
+  width: 95%;
+  margin: 0 auto;
+}
+
+option {
+  padding: 12px;
+}
+
+select {
+  padding: 8px;
+}
+
+label[for="fio"],
+label[for="age"],
+label[for="email"] {
+  display: block;
+}
+
+.field {
+  margin-bottom: 0.5rem;
+}
+
+select {
+  padding: 8px;
+}
+
+input {
+  padding: 8px;
+}
+
+input[type="text"] {
+  width: 90%;
+}
+
+textarea {
+  height: 180px;
+  width: 92%;
+  padding: 4px;
+}
