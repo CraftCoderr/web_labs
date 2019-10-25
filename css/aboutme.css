@@ -1,13 +1,17 @@
-@import "body.css";
+@import "main.css";
 
 * {
   box-sizing: border-box;
 }
 
+main {
+  padding-top: 0;
+}
+
 /* The actual timeline (the vertical ruler) */
 .timeline {
   position: relative;
-  max-width: 1200px;
+  width: 100%;
   margin: 0 auto;
 }
 

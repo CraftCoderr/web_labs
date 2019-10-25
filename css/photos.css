@@ -1,8 +1,12 @@
-@import "body.css";
+@import "main.css";
+
+main {
+  padding-top: 0;
+}
 
 #container {
   width: 100%;
-  max-width: 963px;
+  max-width: 850px;
   margin: 0 auto;
   display: flex;
   flex-direction: row;
