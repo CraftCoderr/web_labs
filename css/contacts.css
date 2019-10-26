@@ -15,7 +15,8 @@ select {
 
 label[for="fio"],
 label[for="age"],
-label[for="email"] {
+label[for="email"],
+label[for="phone"] {
   display: block;
 }
 
