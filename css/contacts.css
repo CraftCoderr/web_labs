@@ -41,3 +41,82 @@ textarea {
   width: 92%;
   padding: 4px;
 }
+
+.valid {
+  border: 0;
+  border-bottom: 5px solid rgb(31, 219, 31);
+}
+
+.invalid {
+  border: 0;
+  border-bottom: 5px solid rgb(255, 75, 75);
+}
+
+.errorbox {
+  display: block;
+  border-radius: 4px;
+  padding: 6px;
+  background: rgb(255, 150, 150);
+}
+
+/* Calendar */
+
+.calendar {
+  visibility: hidden;
+  background-color: #ddd;
+  position: absolute;
+  margin-left: 16px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  border: 1px solid rgb(139, 139, 139);
+}
+
+.calendar-header {
+  background-color: var(--primary-color);
+  display: block;
+  padding: 6px 0px;
+  border-radius: 8px;
+  margin: 4px;
+}
+
+.calendar-header > div {
+  width: fit-content;
+  margin: 0 auto;
+}
+
+.calendar-header select {
+  padding: 2px;
+}
+
+.calendar-days {
+  border-spacing: 5px;
+  empty-cells: hide;
+}
+
+.calendar th {
+  padding: 4px;
+  width: 25px;
+}
+
+.calendar td {
+  font-weight: bold;
+  padding: 2px;
+  border: 2px solid rgb(139, 139, 139);
+  text-align: right;
+  cursor: default;
+  transition: background-color 0.1s;
+}
+
+.calendar td:hover {
+  background-color: var(--secondary-color)
+}
+
+.selected-day {
+  color: white;  
+  background-color: var(--accent-color)
+}
+
+.today {
+  border: 2px solid rgb(70, 70, 70);
+  text-decoration: underline;
+}

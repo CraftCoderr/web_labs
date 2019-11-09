@@ -1,24 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>header</title>
-</head>
-<body>
-    <nav id="nav-bar">
-        <p id="logo">L/W</p>
-        <div id="nav">
-            <a href="index.html">Home</a>
-            <a href="aboutme.html">About me</a>
-            <a href="interests.html">Interests</a>
-            <a href="education.html">Education</a>
-            <a href="photos.html">Photos</a>
-            <a href="test.html">Test</a>
-            <a href="contacts.html">Contacts</a>
-        </div>
-        <a href="javascript:void(0);" class="icon" onclick="toggleNav()">
-            <i class="fa fa-bars"></i>
-        </a>
-    </nav>
-</body>
-</html>
+<nav class="topnav" id="mainNav">
+  <a id="index" class="active" href="index.html">Home</a>
+  <a id="aboutme" href="aboutme.html">About me</a>
+  <div class="dropdown">
+    <button class="dropbtn">
+        Interests
+        <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+        <a href="interests.html#hobby">Hobby</a>
+        <a href="interests.html#book">Book</a>
+        <a href="interests.html#music">Music</a>
+        <a href="interests.html#film">Film</a>
+    </div>  
+  </div>
+  <a id="education" href="education.html">Education</a>
+  <a id="photos" href="photos.html">Photos</a>
+  <a id="test" href="test.html">Test</a>
+  <a id="contacts" href="contacts.html">Contacts</a>
+  <a id="timer" href="https://time100.ru/"></a>
+  <a
+    href="javascript:void(0);"
+    style="font-size:15px;"
+    class="icon"
+    onclick="toggleNav()"
+    >&#9776;</a
+  >
+</nav>

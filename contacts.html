@@ -15,11 +15,12 @@
 
     <main>
         <form name="contactform" onsubmit="validation()" action="mailto:n-klyshko@mail.ru" method="get" enctype="text/plain">
-            <div class="field">
+            <div class="field" id="field-fio">
                 <label for="fio">Фамилия Имя Отчество</label>
                 <input type="text" id="fio" name="fio">
+                <div id="errorbox-fio"></div>
             </div>
-            <div class="field">
+            <div class="field" id="field-gender">
                 <label>Пол</label>
                 <div>
                     <input type="radio" id="radio1" name="gender">
@@ -29,24 +30,59 @@
                     <input type="radio" id="radio2" name="gender">
                     <label for="radio2">женский</label>
                 </div>
+                <div id="errorbox-gender"></div>
             </div>
-            <div class="field">
+            <div class="field" id="field-dob">
                 <label for="age">Возраст</label>
                 <select id="age" name="age">
                     <option disabled selected>Выберите возраст</option>
                 </select>
+                <div id="errorbox-age"></div>
+            </div>
+            <div class="field">
+                <label for="dob">Дата рождения</label>
+                <input type="text" id="dob" name="dob" autocomplete="off">
+                <div class="calendar" id="calendar">
+                    <div class="calendar-header">
+                        <div>
+                            <select id="calendar-month"></select>
+                            <select id="calendar-year"></select>
+                        </div>
+                    </div>
+                    <table class="calendar-days">
+                        <tr>
+                            <th>Su</th>
+                            <th>Mo</th>
+                            <th>Tu</th>
+                            <th>We</th>
+                            <th>Th</th>
+                            <th>Fr</th>
+                            <th>Sa</th>
+                        </tr>
+                        <tr id="week1"></tr>
+                        <tr id="week2"></tr>
+                        <tr id="week3"></tr>
+                        <tr id="week4"></tr>
+                        <tr id="week5"></tr>
+                        <tr id="week6"></tr>
+                    </table>
+                </div>
+                <div id="errorbox-dob"></div>
             </div>
             <div class="field">
                 <label for="phone">Телефон</label>
                 <input type="text" id="phone" name="phone">
+                <div id="errorbox-phone"></div>
             </div>
             <div class="field">
                 <label for="email">E-mail</label>
                 <input type="text" id="email" name="email">
+                <div id="errorbox-email"></div>
             </div>
-            <textarea placeholder="Сообщение" name="message"></textarea>
+            <textarea placeholder="Сообщение" name="message" id="message"></textarea>
+            <div id="errorbox-message"></div>
             <p>
-                <input type="submit" value="Отправить">
+                <input disabled id="submitbtn" type="submit" value="Отправить">
                 <input type="reset" value="Очистить">
             </p>
         </form>
@@ -59,17 +95,18 @@
     <script src="js/jquery-3.4.1.js"></script>
     <script src="js/header.js"></script>
     <script src="js/validation.js"></script>
+    <script src="js/calendar.js"></script>
     <script>
-        var ageSelect = document.getElementById("age");
+        var ageSelect = document.getElementById("age")
         for (var i = 1; i <= 100; i++) {
-            var option = document.createElement("option");
-            option.value = i;
-            option.text = i;
-            ageSelect.appendChild(option);
+            var option = document.createElement("option")
+            option.value = i
+            option.text = i
+            ageSelect.appendChild(option)
         }
 
         function validateEmpty(value) {
-            return !($.trim(value) == '');
+            return !($.trim(value) == '')
         }
 
         function validateAge(value) {
@@ -78,19 +115,19 @@
 
         function validateFIO(value) {
             var words = value.split(' ');
-            return words.length == 3 && words.every((val, i, arr) => val.length > 0);
+            return words.length == 3 && words.every((val, i, arr) => val.length > 0)
         }
 
         function validatePhone(value) {
             if (!(value.length >= 10 && value.length <= 12 && value[0] == '+' && (value[1] == '7' || value[1] == '3'))) {
-                return false;
+                return false
             }
             for (var i = 2; i < value.length; i++) {
                 if (value[i] < '0' || value[i] > '9') {
-                    return false;
+                    return false
                 }
             }
-            return true;
+            return true
         }
 
         var validations = {
@@ -116,6 +153,12 @@
                     validation: validateAge
                 }
             ],
+            "dob": [
+                {
+                    message: "Дата рождения не заполнена",
+                    validation: (value) => { return parseDate(value) !== undefined}
+                }
+            ],
             "phone": [
                 {
                     message: "Неправильный формат телефона",
@@ -136,9 +179,49 @@
             ]
         }
 
-        var form = document.forms["contactform"];
+        errorboxes = {}
+
+        function setupValidation(validations) {
+            for (var key in validations) {
+                var element = document.getElementById(key)
+                console.log(key)
+                if (element !== null) {
+                    console.log('not null')
+                    var errorbox = document.getElementById('errorbox-' + key)
+                    errorbox.classList.add('errorbox')
+                    errorbox.style.visibility = 'hidden'
+                    errorboxes[key] = errorbox
+                    fieldValidation = (event) => {
+                        var element = event.target
+                        var key = element.id
+                        var fieldValidations = validations[key]
+                        var errorbox = errorboxes[key]
+                        for (var i = 0; i < fieldValidations.length; i++) {
+                            var validation = fieldValidations[i]
+                            if (validation.validation(element.value)) {
+                                element.classList.remove('invalid')
+                                element.classList.add('valid')
+                                errorbox.style.visibility = 'hidden'
+                            } else {
+                                errorbox.innerText = validation.message
+                                errorbox.style.visibility = 'visible'
+                                element.classList.remove('valid')
+                                element.classList.add('invalid')
+                                break
+                            }
+                        }   
+                        document.getElementById('submitbtn').disabled = !validateForm(form, validations, false)
+                    }
+                    element.addEventListener('keyup', fieldValidation, false)
+                    element.addEventListener('change', fieldValidation, false)
+                }
+            }
+        }
+        setupValidation(validations)
+
+        var form = document.forms['contactform'];
         function validation() {
-            validateForm(form, validations);
+            
         }
     </script>
 </body>
