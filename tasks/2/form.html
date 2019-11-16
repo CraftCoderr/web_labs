@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="form-task.js"></script>
+    <title>Form</title>
+</head>
+<body>
+    <form onsubmit="return false" name="form1">
+        <p>Input1</p>
+        <input type="text" id="inp1" name="inp1">
+        <p>Radio1 = test1</p>
+        <input type="radio" name="radio" id="radio1" value="test1">
+        <p>Radio2 = test2</p>
+        <input type="radio" name="radio" id="radio2" value="test2">
+        <p>Input2</p>
+        <input type="text" id="inp2" name="inp2">
+        <p>Input3</p>
+        <input type="text" id="inp3" name="inp3">
+        <input type="submit" onclick="calcSum()" value="ok">
+    </form>
+    <script>
+        function calcSum() {
+            alert(sumForm(document.forms['form1']))
+        }
+    </script>
+</body>
+</html>
