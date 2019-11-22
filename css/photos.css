@@ -52,3 +52,65 @@ main {
 .photo:nth-child(3n) {
   margin-right: 0;
 }
+
+
+
+.photo-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.86);
+}
+
+.photo-container {
+  display: block;
+  height: 60vh;
+  margin: 20vh auto;
+  padding: 30px;
+  color: white;
+}
+
+.photo-container > img {
+  display: block;
+  height: 80%;
+  margin: 0 auto;
+}
+
+.modal-footer {
+  user-select: none;
+  font-size: 40px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.modal-footer > * {
+  display: inline-block;
+}
+
+#modal-close {
+  position: fixed;
+  display: block;
+  font-size: 40px;
+  top: 25px;
+  right: 25px;
+}
+
+.disabled-btn {
+  color: gray;
+}
+
+.modal-icon.disabled-btn:hover {
+  background: none; 
+}
+
+.modal-icon {
+  padding-left: 25px;
+  padding-right: 25px;
+}
+
+.modal-icon:hover {
+  background: rgba(0, 0, 0, 0.90);
+}

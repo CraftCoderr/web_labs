@@ -18,3 +18,21 @@ window.addEventListener('load', (event) => {
     document.getElementById('timer').textContent = dateStr
   }, 1000)
 })
+
+function onMouseOver (event) {
+  event.target.classList.add('hovered')
+}
+
+function onMouseOut (event) {
+  event.target.classList.remove('hovered')
+}
+
+setTimeout(function () {
+  var children = document.getElementById('mainNav').children
+  for (var i = 0; i < children.length; i++) {
+    if (children[i].tagName === 'A') {
+      children[i].addEventListener('mouseover', onMouseOver, false)
+      children[i].addEventListener('mouseout', onMouseOut, false)
+    }
+  }
+}, 500)

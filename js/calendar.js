@@ -52,7 +52,7 @@ function updateCalendar (date) {
 
   var firstDay = new Date(date.getFullYear(), date.getMonth(), 1)
   var day = firstDay.getDay() - 1
-  var daysCount = new Date(date.getFullYear(), date.getMonth(), 0).getDate()
+  var daysCount = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate()
   var week = 0
   cells.forEach((week) => week.forEach((cell) => {
     cell.innerText = ''
@@ -72,7 +72,7 @@ function updateCalendar (date) {
   }
 
   currentDate = date
-  setInputValue(currentDate.getDate() + '.' + (currentDate.getMonth() + 1) + '.' + currentDate.getFullYear())
+  setInputValue(currentDate.getDate() + '.' + ('0' + (currentDate.getMonth() + 1)).slice(-2) + '.' + currentDate.getFullYear())
 }
 
 var nextCalendarState // undefined = none, true = openned, false = closed
@@ -136,7 +136,7 @@ function parseDate (str) {
 
   if (year < 0) return
   if (month < 1 || month > 12) return
-  if (day < 1 || day > new Date(year, month - 1, 0).getDate()) return
+  if (day < 1 || day > new Date(year, month, 0).getDate()) return
   return new Date(year, month - 1, day)
 }
 

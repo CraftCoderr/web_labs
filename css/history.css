@@ -1,0 +1,17 @@
+@import "main.css";
+
+.history-table {
+  width: 50%;
+  min-width: 380px;
+  background-color: #eeeeee;
+  border-collapse: collapse;
+}
+
+th {
+  text-align: center;
+}
+
+td, th {
+  border: 2px solid #999999;
+  padding: 8px;
+}
