@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TicTac</title>
+    <style>
+        #modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(0, 0, 0, 0.76);
+            text-align: center;
+        }
+
+        #modal > p {
+            font-size: 50px;
+            color: white;
+            margin-top: 40vh;
+        }
+
+        #field input {
+            height: 20px;
+            width: 20px;
+        }
+    </style>
+</head>
+<body>
+    <form>
+        <label for="count-inp">N</label>
+        <input type="text" name="count-inp" id="count-inp">
+        <table id="field">
+
+        </table>
+
+        <div id="modal">
+           <p>BOOM!</p> 
+        </div>
+    </form>
+    <script>
+        var cells = []
+        var n = 0
+
+        document.getElementById('count-inp').addEventListener('change', (event) => {
+            n = Number(event.target.value)
+            if (n <= 0) {
+                alert('Input correct number, please.')
+                event.target.value = ""
+                return
+            }
+
+            var field = document.getElementById('field')
+            for (var i = 0; i < n; i++) {
+                var row = document.createElement('tr')
+                var line = []
+                for (var j = 0; j < n; j++) {
+                    var cell = document.createElement('td')
+                    var chkbox = document.createElement('input')
+                    chkbox.type = 'checkbox'
+                    chkbox.id = i.toString() + ',' + j.toString()
+
+                    line.push(chkbox)
+                    cell.appendChild(chkbox)
+                    row.appendChild(cell)
+                }
+                cells.push(line)
+                field.appendChild(row)
+            }
+            field.addEventListener('change', (event) => {
+                if (event.target.tagName !== 'INPUT') return;
+                var parts = event.target.id.split(',')
+                var x = Number(parts[0])
+                var y = Number(parts[1])
+
+                var checked = true
+                for (var i = 0; i < n; i++) {
+                    if (!cells[x][i].checked) {
+                        checked = false
+                    }
+                }
+                if (checked) {
+                    document.getElementById('modal').style.display = 'block'
+                }
+            }, false)
+            event.target.disabled = true
+        }, false)
+    </script>
+</body>
