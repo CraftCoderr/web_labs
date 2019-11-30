@@ -99,6 +99,7 @@
     <script src="js/calendar.js"></script>
     <script>
         var ageSelect = document.getElementById("age")
+        var form = document.forms['contactform']
         for (var i = 1; i <= 100; i++) {
             var option = document.createElement("option")
             option.value = i
@@ -222,11 +223,6 @@
             document.getElementById('radio2').addEventListener('change', updateSubmitState, false)
         }
         setupValidation(validations)
-
-        var form = document.forms['contactform'];
-        function validation() {
-            
-        }
     </script>
 </body>
 </html>

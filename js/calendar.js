@@ -126,8 +126,6 @@ function dayClick (event) {
 function parseDate (str) {
   var parts = str.split('.')
 
-  console.log(parts)
-
   if (parts.length !== 3) return
 
   var day = parts[0]
