@@ -60,7 +60,7 @@ textarea {
   background: rgb(255, 150, 150);
 }
 
-/* Calendar */
+/* Calendar start */
 
 .calendar {
   visibility: hidden;
@@ -120,4 +120,71 @@ textarea {
 .today {
   border: 2px solid rgb(70, 70, 70);
   text-decoration: underline;
+}
+
+/* Calendar end */
+
+.popover {
+  position: absolute;
+  padding: 10px;
+  margin-top: 10px;
+  background-color: bisque;
+  left: 40%;
+  box-sizing: border-box;
+  border-radius: 20px;
+}
+
+.popover > p {
+  margin: 0;
+}
+
+.arrow-up {
+  position: absolute;
+  height: 0;
+  width: 0;
+  top: -10px;
+  display: block;
+  margin-left: 10%;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  
+  border-bottom: 10px solid bisque;
+}
+
+.modal-window {
+  display: none;
+  text-align: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;  
+  right: 0;
+}
+
+.modal-dialog {
+  display: inline-block;
+  margin: 40vh auto;
+  padding: 30px;
+  background-color: bisque;
+  white-space: nowrap;
+}
+
+.modal-dialog > p {
+  display: block;
+  margin: 10px auto;
+}
+
+.modal-footer {
+  margin-top: 20px;
+  user-select: none;
+  margin: 0 auto;
+}
+
+.modal-footer > * {
+  display: inline-block;
+}
+
+.button {
+  padding: 5px;
+  background-color: var(--accent-color);
 }

@@ -83,11 +83,21 @@
             <textarea placeholder="Сообщение" name="message" id="message"></textarea>
             <div id="errorbox-message"></div>
             <p>
-                <input disabled id="submitbtn" type="submit" value="Отправить">
+                <input disabled id="submitbtn" type="button" value="Отправить">
                 <input type="reset" value="Очистить">
             </p>
         </form>
     </main>
+
+    <div id="modal" class="modal-window">
+        <div class="modal-dialog">
+            <p>Confirm data send?</p>
+            <div class="modal-footer">
+                <div id="yes-btn" class="button">Yes</div>
+                <div id="no-btn" class="button">No</div>
+            </div>
+        </div>
+    </div>
 
     <script src="js/w3.js"></script>
     <script>
@@ -97,6 +107,8 @@
     <script src="js/header.js"></script>
     <script src="js/validation.js"></script>
     <script src="js/calendar.js"></script>
+    <script src="js/popover.js"></script>
+    <script src="js/modal.js"></script>
     <script>
         var ageSelect = document.getElementById("age")
         var form = document.forms['contactform']
@@ -192,6 +204,7 @@
                 var key = element.id
                 var fieldValidations = validations[key]
                 var errorbox = errorboxes[key]
+                removePopover($(`#${key}`))
                 for (var i = 0; i < fieldValidations.length; i++) {
                     var validation = fieldValidations[i]
                     if (validation.validation(element.value)) {
@@ -203,6 +216,7 @@
                         errorbox.style.display = 'block'
                         element.classList.remove('valid')
                         element.classList.add('invalid')
+                        setPopover($(`#${key}`), validation.message)
                         break
                     }
                 }
@@ -223,6 +237,19 @@
             document.getElementById('radio2').addEventListener('change', updateSubmitState, false)
         }
         setupValidation(validations)
+
+        $('#submitbtn').click(function() {
+            showModal(
+                () => {
+                    document.forms['contactform'].submit()
+                    console.log('yes')
+                    closeModal()
+                },
+                () => {
+                    closeModal()
+                }
+            )
+        })
     </script>
 </body>
 </html>
