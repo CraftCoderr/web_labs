@@ -1,34 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang='en'>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>L/W > Home page</title>
-    <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/index.css">
-    <script src="js/visit-monitor.js"></script>
-</head>
-<body>
-    <header w3-include-html="header.html"></header>
-
-    <main>
-        <h2>Laboratory work 1. HTML & CSS</h2>
-        <div id="content">
-            <img id="photo" src="photo.jpg" alt="My VK profile photo">
-            <div id="description">
-                <p>Nikita Klyshko</p>
-                <p>Group IS/b-17-2-о</p>
-            </div>
+    <title>L/W Home page</title>
+    <link href='css/normalize.css' rel='stylesheet'>
+    <link href='css/font-awesome.min.css' rel='stylesheet'>
+    <link href='css/index.css' rel='stylesheet'>
+    <script src='js/visit-monitor.js'></script>
+  </head>
+  <body>
+    <header>
+      <nav class='topnav' id='mainNav'>
+        <a class='active' href='index.html' id='index'>Home</a>
+        <a href='aboutme.html' id='aboutme'>About me</a>
+        <div class='dropdown'>
+          <button class='dropbtn'>
+            Interests
+            <i class='fa fa-caret-down'></i>
+          </button>
+          <div class='dropdown-content'>
+            <a href='interests.html#hobby'>Hobby</a>
+            <a href='interests.html#book'>Book</a>
+            <a href='interests.html#music'>Music</a>
+            <a href='interests.html#film'>Film</a>
+          </div>
         </div>
+        <a href='education.html' id='education'>Education</a>
+        <a href='photos.html' id='photos'>Photos</a>
+        <a href='test.html' id='test'>Test</a>
+        <a href='contacts.html' id='contacts'>Contacts</a>
+        <a href='history.html' id='history'>History</a>
+        <a href='https://time100.ru/' id='timer'></a>
+        <a class='icon' href='javascript:void();' onclick='toggleNav()' style='font-size:15px;'>%#9776;</a>
+      </nav>
+    </header>
+    <main>
+      <h2>Laborotory work 1. HTML & CSS & JS</h2>
+      <div class='content'>
+        <img alt='My VK profile photo' id='photo' src='photo.jpg'>
+        <div class='description'>
+          <p>Nikita Klyshko</p>
+          <p>Group IS/b-17-2-ft</p>
+        </div>
+      </div>
     </main>
-
-    <script src="js/w3.js"></script>
-    <script>
-        w3.includeHTML();
-    </script>
-    <script src="js/header.js"></script>
-    <script src="js/jquery-3.4.1.js"></script>
-</body>
+    <script src='js/header.js'></script>
+    <script src='js/jquery-3.4.1.js'></script>
+  </body>
 </html>

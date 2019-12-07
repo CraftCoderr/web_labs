@@ -1,0 +1,19 @@
+%nav#mainNav.topnav
+    %a#index.active{:href => 'index.html' } Home
+    %a#aboutme{:href => 'aboutme.html'} About me
+    .dropdown
+        %button.dropbtn
+            Interests
+            %i.fa.fa-caret-down
+        .dropdown-content
+            %a{:href => 'interests.html#hobby'} Hobby
+            %a{:href => 'interests.html#book'} Book
+            %a{:href => 'interests.html#music'} Music
+            %a{:href => 'interests.html#film'} Film
+    %a#education{:href => 'education.html'} Education
+    %a#photos{:href => 'photos.html'} Photos
+    %a#test{:href => 'test.html'} Test
+    %a#contacts{:href => 'contacts.html'} Contacts
+    %a#history{:href => 'history.html'} History
+    %a#timer{:href => 'https://time100.ru/'}
+    %a.icon{:href => 'javascript:void();', :style => 'font-size:15px;', :onclick => 'toggleNav()'} %#9776;

@@ -1,0 +1,40 @@
+!!!
+%html{:lang => 'en'}
+    %head
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        %title L/W > About me
+        %link{:rel => 'stylesheet', :href => 'css/normalize.css'}
+        %link{:rel => 'stylesheet', :href => 'css/font-awesome.min.css'}
+        %link{:rel => 'stylesheet', :href => 'css/aboutme.css'}
+        %link{:rel => 'stylesheet', :href => 'css/header.css'}
+        %script{:src => 'js/visit-monitor.js'}
+    
+    %body
+        %header
+            = Haml::Engine.new(File.read(File.dirname(__FILE__) + "\\header.haml")).render
+        
+        - @data = [['2019', '#leadersofdigital Hackatohn.'],
+        ['2018', 'CyberChallenge by Rostelecom.'],
+        ['2017-Present', 'Sevastopol State University, Information System Department.'], 
+        ['2017', 'TalentRussia in Yaroslavl.'], 
+        ['2016', 'FutureOfRussia in St. Petersburg.'],
+        ['2015', 'Math school in Sochi.Sirius'],
+        ['2015-Present', 'Cerebus Network.'],
+        ['2013-2014', 'MineWorldGames.'],
+        ['2012', 'Pascal summer school in Holland(Sevastopol).']]
+        
+        %main
+            .timeline
+                - (0..@data.length-1).each do |i|
+                    - if i % 2 == 0
+                        .container.left
+                            .content
+                                %h2 #{@data[i][0]}
+                                %p #{@data[i][1]}
+                    - else
+                        .container.right
+                            .content
+                                %h2 #{@data[i][0]}
+                                %p #{@data[i][1]}

@@ -1,0 +1,24 @@
+!!!
+%html{:lang => 'en'}
+    %head
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        %title L/W Home page
+        %link{:rel => 'stylesheet', :href => 'css/normalize.css'}
+        %link{:rel => 'stylesheet', :href => 'css/font-awesome.min.css'}
+        %link{:rel => 'stylesheet', :href => 'css/index.css'}
+        %script{:src => 'js/visit-monitor.js'}
+    %body
+        %header
+            = Haml::Engine.new(File.read(File.dirname(__FILE__) + "\\header.haml")).render
+        %main
+            %h2 Laborotory work 1. HTML & CSS & JS
+            .content
+                %img#photo{:src => 'photo.jpg', :alt => 'My VK profile photo'}
+                .description
+                    %p Nikita Klyshko
+                    %p Group IS/b-17-2-ft
+                    
+        %script{:src => 'js/header.js'}
+        %script{:src => 'js/jquery-3.4.1.js'}

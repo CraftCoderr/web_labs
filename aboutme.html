@@ -1,84 +1,99 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang='en'>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>L/W > About me</title>
-    <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/aboutme.css">
-    <link rel="stylesheet" href="css/header.css">
-    <script src="js/visit-monitor.js"></script>
-</head>
-<body>
-    <header w3-include-html="header.html"></header>
-
-
-    <main>
-        <div class="timeline">
-            <div class="container left">
-                <div class="content">
-                    <h2>2019</h2>
-                    <p>#leadersofdigital Hackatohn.</p>
-                </div>
-            </div>
-            <div class="container right">
-                <div class="content">
-                    <h2>2019</h2>
-                    <p>CyberChallenge by Rostelecom.</p>
-                </div>
-            </div>
-            <div class="container left">
-                <div class="content">
-                    <h2>2017-Present</h2>
-                    <p>Sevastopol State University, Information System Department.</p>
-                </div>
-            </div>
-            <div class="container right">
-                <div class="content">
-                    <h2>2017</h2>
-                    <p>TalentRussia in Yaroslavl.</p>
-                </div>
-            </div>
-            <div class="container left">
-                <div class="content">
-                    <h2>2016</h2>
-                    <p>FutureOfRussia in St. Petersburg.</p>
-                </div>
-            </div>
-            <div class="container right">
-                <div class="content">
-                    <h2>2015</h2>
-                    <p>Math school in Sochi.Sirius</p>
-                </div>
-            </div>
-            <div class="container left">
-                <div class="content">
-                    <h2>2015-Present</h2>
-                    <p>Cerebus Network.</p>
-                </div>
-            </div>
-            <div class="container right">
-                <div class="content">
-                    <h2>2013-2014</h2>
-                    <p>MineWorldGames.</p>
-                </div>
-            </div>
-            <div class="container left">
-                <div class="content">
-                    <h2>2012</h2>
-                    <p>Pascal summer school in Holland(Sevastopol).</p>
-                </div>
-            </div>
+    <link href='css/normalize.css' rel='stylesheet'>
+    <link href='css/font-awesome.min.css' rel='stylesheet'>
+    <link href='css/aboutme.css' rel='stylesheet'>
+    <link href='css/header.css' rel='stylesheet'>
+    <script src='js/visit-monitor.js'></script>
+  </head>
+  <body>
+    <header>
+      <nav class='topnav' id='mainNav'>
+        <a class='active' href='index.html' id='index'>Home</a>
+        <a href='aboutme.html' id='aboutme'>About me</a>
+        <div class='dropdown'>
+          <button class='dropbtn'>
+            Interests
+            <i class='fa fa-caret-down'></i>
+          </button>
+          <div class='dropdown-content'>
+            <a href='interests.html#hobby'>Hobby</a>
+            <a href='interests.html#book'>Book</a>
+            <a href='interests.html#music'>Music</a>
+            <a href='interests.html#film'>Film</a>
+          </div>
         </div>
+        <a href='education.html' id='education'>Education</a>
+        <a href='photos.html' id='photos'>Photos</a>
+        <a href='test.html' id='test'>Test</a>
+        <a href='contacts.html' id='contacts'>Contacts</a>
+        <a href='history.html' id='history'>History</a>
+        <a href='https://time100.ru/' id='timer'></a>
+        <a class='icon' href='javascript:void();' onclick='toggleNav()' style='font-size:15px;'>%#9776;</a>
+      </nav>
+    </header>
+    <main>
+      <div class='timeline'>
+        <div class='container left'>
+          <div class='content'>
+            <h2>2019</h2>
+            <p>#leadersofdigital Hackatohn.</p>
+          </div>
+        </div>
+        <div class='container right'>
+          <div class='content'>
+            <h2>2018</h2>
+            <p>CyberChallenge by Rostelecom.</p>
+          </div>
+        </div>
+        <div class='container left'>
+          <div class='content'>
+            <h2>2017-Present</h2>
+            <p>Sevastopol State University, Information System Department.</p>
+          </div>
+        </div>
+        <div class='container right'>
+          <div class='content'>
+            <h2>2017</h2>
+            <p>TalentRussia in Yaroslavl.</p>
+          </div>
+        </div>
+        <div class='container left'>
+          <div class='content'>
+            <h2>2016</h2>
+            <p>FutureOfRussia in St. Petersburg.</p>
+          </div>
+        </div>
+        <div class='container right'>
+          <div class='content'>
+            <h2>2015</h2>
+            <p>Math school in Sochi.Sirius</p>
+          </div>
+        </div>
+        <div class='container left'>
+          <div class='content'>
+            <h2>2015-Present</h2>
+            <p>Cerebus Network.</p>
+          </div>
+        </div>
+        <div class='container right'>
+          <div class='content'>
+            <h2>2013-2014</h2>
+            <p>MineWorldGames.</p>
+          </div>
+        </div>
+        <div class='container left'>
+          <div class='content'>
+            <h2>2012</h2>
+            <p>Pascal summer school in Holland(Sevastopol).</p>
+          </div>
+        </div>
+      </div>
     </main>
-
-    <script src="js/w3.js"></script>
-    <script>
-        w3.includeHTML();
-    </script>
-    <script src="js/jquery-3.4.1.js"></script>
-    <script src="js/header.js"></script>
-</body>
+  </body>
 </html>

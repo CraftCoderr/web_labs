@@ -2,11 +2,6 @@ var popid = 1
 
 function setPopover(jq, text) {
   var newid = popid++
-  // var block = document.createElement('div')
-  // block.className = 'popover'
-  // block.id = 'popover-' + newid
-  // block.innerText = text
-  // block.style.display = 'none'
   jq.eq(0)
     .attr('data-pop-id', 'popover-' + newid)
     .attr('data-pop-state', true)
