@@ -22,7 +22,7 @@ class Route
     public function handle(Request $request, $path = null)
     {
         $childPath = $request->popPath();
-        if ($childPath == null) {
+        if ($childPath === null) {
             if ($this->handler != null) {
                 $handler = $this->handler;
                 if (isset($handler)) {
@@ -37,7 +37,7 @@ class Route
             $this->routes[$childPath]->handle($request);
             return;
         }
-        if (array_key_exists('/', $this->routes))
+        if (array_key_exists('/', $this->routes) && $path == null)
         {
             $this->routes['/']->handle($request, $childPath);
             return;

@@ -21,7 +21,18 @@ class Router
 
 
     public function handle(Request $request) {
-        $this->root->handle($request);
+        try {
+            $this->root->handle($request);
+        } catch (RouteNotFound $e) {
+            global $config;
+            if ($config['debug']) {
+                throw $e;
+            } else {
+                http_response_code(404);
+                echo "NOT FOUND";
+                // handle not found 404
+            }
+        }
     }
 
     public function route($method, $pattern, $handler) {
@@ -31,7 +42,8 @@ class Router
         $count = count($parts);
         for ($i = 0; $i < $count; $i++) {
             $next = null;
-            if (preg_match('({([a-zA-Z]+)})', $parts[$i], $m)) {
+            $part = $parts[$i] != '' ? $parts[$i] : '/';
+            if (preg_match('({([a-zA-Z]+)})', $part, $m)) {
                 $parameterName = $m[1];
                 $next = $current->getChild();
                 if ($next == null) {
@@ -45,10 +57,10 @@ class Router
                     }
                 }
             } else {
-                $next = $current->getChild($parts[$i]);
+                $next = $current->getChild($part);
                 if ($next == null) {
                     $next = new Route();
-                    $current->addChild($next, $parts[$i]);
+                    $current->addChild($next, $part);
                 }
             }
             $current = $next;
