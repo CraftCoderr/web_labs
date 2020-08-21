@@ -33,12 +33,6 @@ class MainController
         $renderer->render('education');
     }
 
-    public function photos()
-    {
-        global $renderer;
-        $renderer->render('photos');
-    }
-
     public function test()
     {
         global $renderer;

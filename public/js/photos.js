@@ -1,6 +1,5 @@
-var titles = ['27.08.2017', '15.10.2017', '15.10.2017', '22.10.2017', '22.10.2017', '8.11.2017', '24.12.2017', '29.08.2018', '21.10.2018', '11.11.2018', '28.11.2018', '3.12.2018', '02.01.2019', '08.03.2019', '28.09.2019']
-var photos = ['21041672.jpg', '22430178.jpg', '22580631.jpg', '22710566.jpg', '22636999.jpg', '23347999.jpg', '25015541.jpg', '39301472.jpg', '43201094.jpg', '5.jpg', '4.jpg', '3.jpg', '2.jpg', '1.jpg', '69941812.jpg']
-var count = photos.length
+var photos = []
+var count = 0
 var currentIndex = 0
 
 function updateModalContent (animationOff) {
@@ -31,14 +30,14 @@ function updateModalContent (animationOff) {
   if (!animationOff) {
     $('#photo-img').fadeOut('fast', () => {
       $('#photo-img')
-        .attr('src', 'photos/' + photos[currentIndex])
-        .attr('alt', titles[currentIndex])
+        .attr('src', photos[currentIndex].src)
+        .attr('alt', photos[currentIndex].title)
         .fadeIn('fast')
     })
   } else {
     $('#photo-img')
-      .attr('src', 'photos/' + photos[currentIndex])
-      .attr('alt', titles[currentIndex])
+      .attr('src', photos[currentIndex].src)
+      .attr('alt', photos[currentIndex].title)
   }
 }
 
@@ -74,16 +73,19 @@ function modalKey (event) {
 }
 
 $(() => {
-  var container = document.getElementById('container')
+  var photoElements = document.getElementsByClassName('photo')
 
-  for (var i = count - 1; i >= 0; i--) {
-    var div = document.createElement('div')
-    div.id = i
-    div.className = 'photo'
-    div.innerHTML = `<img src="photos/${photos[i]}" alt="${titles[i]}"><div class="description"><p>${titles[i]}</p></div>`
-    div.addEventListener('click', photoClick, false)
-    container.appendChild(div)
+  let photo
+  for (photo of photoElements) {
+    var img = photo.getElementsByTagName('img')[0]
+    photos.unshift({
+      title: img.getAttribute('alt'),
+      src: img.getAttribute('src')
+    })
+    photo.addEventListener('click', photoClick, false)
   }
+
+  count = photos.length
 
   $('#modal-close').click(modalClose)
   $('#btn-prev').click(prevPhoto)

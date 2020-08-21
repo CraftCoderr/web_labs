@@ -2,6 +2,14 @@
 
 <?php startblock('content') ?>
 <div id="container">
+    <?php for ($i = count($model) - 1; $i >= 0; $i--) { ?>
+        <div id="<?=$i?>" class="photo">
+            <img src="photos/<?=$model[$i]['photo']?>" alt="<?=$model[$i]['title']?>">
+            <div class="description">
+                <p><?=$model[$i]['title']?></p>
+            </div>
+        </div>
+    <?php } ?>
 </div>
 <?php endblock() ?>
 

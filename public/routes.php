@@ -19,7 +19,7 @@ $router->route('GET', '/education', function($request) {
 });
 
 $router->route('GET', '/photos', function($request) {
-    (new \App\MainController())->photos();
+    (new \App\PhotosController())->showPhotos();
 });
 
 $router->route('GET', '/test', function($request) {
