@@ -33,18 +33,6 @@ class MainController
         $renderer->render('education');
     }
 
-    public function test()
-    {
-        global $renderer;
-        $renderer->render('test');
-    }
-
-    public function contacts()
-    {
-        global $renderer;
-        $renderer->render('contacts');
-    }
-
     public function history()
     {
         global $renderer;

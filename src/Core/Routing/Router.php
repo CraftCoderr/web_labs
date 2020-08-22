@@ -35,7 +35,7 @@ class Router
         }
     }
 
-    public function route($method, $pattern, $handler) {
+    public function route($method, $pattern, $handler) : self {
         $parts = explode('/', $pattern);
         array_shift($parts);
         $current = $this->root;
@@ -77,6 +77,7 @@ class Router
         } else {
             $leaf->addChild(new Route($handler));
         }
+        return $this;
     }
 
 

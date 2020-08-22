@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <?php require_once __DIR__ . '/ti.php' ?>
+<?php require_once __DIR__ . '/util.php' ?>
 <html lang='en'>
 <head>
     <meta charset="UTF-8">
