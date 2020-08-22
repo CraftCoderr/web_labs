@@ -1,5 +1,11 @@
 <?php
 
 $config = [
-    'debug' => false
+    'debug' => false,
+    'database' => [
+        'host' => 'mysql',
+        'name' => 'dev',
+        'user' => 'root',
+        'password' => 'secret'
+    ]
 ];
