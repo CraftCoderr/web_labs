@@ -14,5 +14,12 @@ class Files
         return $filename;
     }
 
+    public static function uploaded($name)
+    {
+        global $config;
+        $filename = $config['files'] . 'uploaded/' . $name;
+        return $filename;
+    }
+
 
 }

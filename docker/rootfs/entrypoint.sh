@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-chown www-data /var/www/ /var/www/var/log
+chown www-data /var/www/files /var/www/var/log
+chmod -R a+rw /var/www/files
 
 NGINX_CONFIG=php
 

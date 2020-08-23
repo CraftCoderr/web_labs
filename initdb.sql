@@ -9,3 +9,12 @@ CREATE TABLE test_result(
                             result BOOLEAN,
                             PRIMARY KEY (test_id)
 );
+
+CREATE TABLE blog_post(
+    post_id INT AUTO_INCREMENT,
+    date DATETIME,
+    title VARCHAR(255),
+    image VARCHAR(255),
+    text TEXT,
+    PRIMARY KEY (post_id)
+);

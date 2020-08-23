@@ -1,0 +1,13 @@
+@import "main.css";
+
+.post {
+  display: block;
+  width: 80%;
+  padding: 32px;
+  background-color: #73628A;
+  margin-bottom: 32px;
+}
+
+.post img {
+  max-width: 100%;
+}

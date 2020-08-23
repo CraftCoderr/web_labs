@@ -36,6 +36,7 @@
         <a href='/contacts' id='contacts'>Contacts</a>
         <a href='/history' id='history'>History</a>
         <a href='/feedback' id='feedback'>Feedback</a>
+        <a href='/blog' id='blog'>Blog</a>
         <a href='https://time100.ru/' id='timer'></a>
         <a class='icon' href='javascript:void();' onclick='toggleNav()' style='font-size:15px;'>%#9776;</a>
     </nav>

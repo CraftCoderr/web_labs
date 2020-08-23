@@ -8,5 +8,6 @@ $config = [
         'user' => 'root',
         'password' => 'secret'
     ],
-    'files' => dirname(__DIR__) . '/files'
+    'files' => dirname(__DIR__) . '/files/',
+    'root' => __DIR__,
 ];
