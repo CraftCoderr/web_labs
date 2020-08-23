@@ -2,7 +2,7 @@
 
 chown www-data /var/www/ /var/www/var/log
 
-NGINX_CONFIG=symfony$SYMFONY_VERSION
+NGINX_CONFIG=php
 
 # Avoid to remove a bind mounted nginx config
 NGINX_DEFAULT=/etc/nginx/sites-enabled/default

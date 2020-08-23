@@ -15,7 +15,7 @@ function renderErrors($model, $key) {
 function keepValue($model, $key) {
     if (array_key_exists('keeper', $model)) {
         if (array_key_exists($key, $model['keeper'])) {
-            return $model['keeper'][$key];
+            return htmlspecialchars($model['keeper'][$key]);
         }
     }
     return null;

@@ -37,7 +37,7 @@ class Route
             $this->routes[$childPath]->handle($request);
             return;
         }
-        if (array_key_exists('/', $this->routes) && $path == null)
+        if (array_key_exists('/', $this->routes) && $path == null /*|| $path is method*/)
         {
             $this->routes['/']->handle($request, $childPath);
             return;

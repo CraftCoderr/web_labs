@@ -7,5 +7,6 @@ $config = [
         'name' => 'dev',
         'user' => 'root',
         'password' => 'secret'
-    ]
+    ],
+    'files' => dirname(__DIR__) . '/files'
 ];

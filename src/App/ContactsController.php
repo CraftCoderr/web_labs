@@ -58,7 +58,6 @@ class ContactsController
         } else {
             $renderer->render('contacts', ['keeper' => $request->form(), 'errors' => $validator->getErrors()]);
         }
-
     }
 
 }
