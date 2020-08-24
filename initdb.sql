@@ -18,3 +18,15 @@ CREATE TABLE blog_post(
     text TEXT,
     PRIMARY KEY (post_id)
 );
+
+CREATE TABLE `user`(
+  user_id INT AUTO_INCREMENT,
+  username VARCHAR(255),
+  email VARCHAR(255),
+  password VARCHAR(255),
+  fio VARCHAR(255),
+  is_admin BOOLEAN DEFAULT FALSE,
+  PRIMARY KEY (user_id),
+  UNIQUE (username),
+  UNIQUE (email)
+);

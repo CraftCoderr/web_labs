@@ -6,6 +6,7 @@ namespace App;
 
 use App\Model\BlogRepository;
 use App\Model\FullNameRule;
+use Core\Controller;
 use Core\DB;
 use Core\Files;
 use Core\Model\FormField;
@@ -17,7 +18,7 @@ use Core\Routing\Request;
 use Core\Routing\RouteNotFound;
 use PDO;
 
-class BlogController
+class BlogController extends Controller
 {
     private static $PAGE_SIZE = 5;
 
@@ -29,26 +30,21 @@ class BlogController
     }
 
     public function show($page) {
-        global $renderer;
-
         $count = $this->repository->getCount();
-        if ($page > ceil($count / self::$PAGE_SIZE) || $page < 1) {
+        if (($page > ceil($count / self::$PAGE_SIZE) && $page != 1) || $page < 1 ) {
             throw new RouteNotFound();
         }
         $posts = $this->repository->getPosts($page, self::$PAGE_SIZE);
-        $renderer->render('blog', ['posts' => $posts, 'pages' => $count]);
+        $this->render('blog', ['posts' => $posts, 'pages' => $count]);
     }
 
     public function postForm()
     {
-        global $renderer;
-        $renderer->render('blog_form');
+        $this->render('blog_form');
     }
 
     public function makePost(Request $request)
     {
-        global $renderer;
-        global $config;
         $validator = (new FormValidator())
             ->add('title', new FormField('Заголовок', [
                 new Required()
@@ -69,11 +65,10 @@ class BlogController
         } else {
             $success = false;
         }
-        $renderer->render('blog_form', ['errors' => $validator->getErrors(), 'post_success' => $success]);
+        $this->render('blog_form', ['errors' => $validator->getErrors(), 'post_success' => $success]);
     }
 
     public function import() {
-        global $renderer;
         $success = false;
         if (filesize($_FILES['posts']['tmp_name']) !== 0) {
             if (($handle = fopen($_FILES['posts']['tmp_name'], "r")) !== FALSE) {
@@ -104,7 +99,7 @@ class BlogController
                 $success = true;
             }
         }
-        $renderer->render('blog_form', ['import_success' => $success]);
+        $this->render('blog_form', ['import_success' => $success]);
     }
 
 }

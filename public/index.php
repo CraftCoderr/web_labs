@@ -25,6 +25,7 @@ global $router;
 
 $request = new \Core\Routing\Request(explode('?', $_SERVER['REQUEST_URI'])[0]);
 $renderer = new \Core\View\Renderer(dirname(__DIR__).'/views/');
+session_start();
 $router->handle($request);
 //$renderer->render('base', ['test'=>'Test message!', 'valid' => 0]);
 

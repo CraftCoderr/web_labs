@@ -30,4 +30,12 @@ function keepCheckedValue($model, $key, $value) {
     return '';
 }
 
+function authenticated() {
+    return isset($_SESSION['user']) && $_SESSION['user'] != null;
+}
+
+function username() {
+    return $_SESSION['user'];
+}
+
 ?>

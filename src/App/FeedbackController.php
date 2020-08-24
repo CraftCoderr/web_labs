@@ -6,6 +6,7 @@ namespace App;
 
 use App\Model\FeedbackRepository;
 use App\Model\FullNameRule;
+use Core\Controller;
 use Core\Model\FormField;
 use Core\Model\FormValidator;
 use Core\Model\Rule\Date;
@@ -15,7 +16,7 @@ use Core\Model\Rule\PhoneNumber;
 use Core\Model\Rule\Required;
 use Core\Routing\Request;
 
-class FeedbackController
+class FeedbackController extends Controller
 {
 
     private $repository;
@@ -30,15 +31,13 @@ class FeedbackController
 
     public function showFeedback()
     {
-        global $renderer;
-        $renderer->render('feedback', [
+        $this->render('feedback', [
             'data' => $this->repository->getAllSortedByDate()
         ]);
     }
 
     public function addFeedback(Request $request)
     {
-        global $renderer;
         $data = $request->form();
         $validator = (new FormValidator())
             ->add('fio', new FormField('ФИО', [
@@ -55,12 +54,12 @@ class FeedbackController
         if ($validator->validate($data)) {
             $data['date'] = new \DateTime();
             $this->repository->addFeedback($data);
-            $renderer->render('feedback', [
+            $this->render('feedback', [
                 'sent_success' => true,
                 'data' => $this->repository->getAllSortedByDate()
             ]);
         } else {
-            $renderer->render('feedback', [
+            $this->render('feedback', [
                 'keeper' => $request->form(),
                 'errors' => $validator->getErrors(),
                 'data' => $this->repository->getAllSortedByDate()
@@ -70,19 +69,17 @@ class FeedbackController
 
     public function showUploadForm()
     {
-        global $renderer;
-        $renderer->render('upload_feedback');
+        $this->render('upload_feedback');
     }
 
     public function uploadFeedback(Request $request)
     {
-        global $renderer;
         if (filesize($_FILES['messages']['tmp_name']) == 0) {
             $success = false;
         } else {
             $success = $this->repository->replaceFile($_FILES['messages']['tmp_name']);
         }
-        $renderer->render('upload_feedback', ['upload_success' => $success]);
+        $this->render('upload_feedback', ['upload_success' => $success]);
     }
 
 }

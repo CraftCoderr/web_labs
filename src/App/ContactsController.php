@@ -5,6 +5,7 @@ namespace App;
 
 
 use App\Model\FullNameRule;
+use Core\Controller;
 use Core\Model\FormField;
 use Core\Model\FormValidator;
 use Core\Model\Rule\Date;
@@ -14,7 +15,7 @@ use Core\Model\Rule\PhoneNumber;
 use Core\Model\Rule\Required;
 use Core\Routing\Request;
 
-class ContactsController
+class ContactsController extends Controller
 {
 
     public function showPage()
@@ -25,7 +26,6 @@ class ContactsController
 
     public function sendMessage(Request $request)
     {
-        global $renderer;
         $validator = (new FormValidator())
             ->add('fio', new FormField('ФИО', [
                 new Required(),
@@ -54,9 +54,9 @@ class ContactsController
                 new Required()
             ]));
         if ($validator->validate($request->form())) {
-            $renderer->render('contacts', ['sent_success' => true]);
+            $this->render('contacts', ['sent_success' => true]);
         } else {
-            $renderer->render('contacts', ['keeper' => $request->form(), 'errors' => $validator->getErrors()]);
+            $this->render('contacts', ['keeper' => $request->form(), 'errors' => $validator->getErrors()]);
         }
     }
 

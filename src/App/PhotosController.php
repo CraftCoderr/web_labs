@@ -4,13 +4,14 @@
 namespace App;
 
 
-class PhotosController
+use Core\Controller;
+
+class PhotosController extends Controller
 {
 
     public function showPhotos()
     {
-        global $renderer;
-        $renderer->render('photos', [
+        $this->render('photos', [
             [ 'title' => '27.08.2017', 'photo' => '21041672.jpg' ],
             [ 'title' => '15.10.2017', 'photo' => '22430178.jpg' ],
             [ 'title' => '15.10.2017', 'photo' => '22580631.jpg' ],

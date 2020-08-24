@@ -4,39 +4,35 @@
 namespace App;
 
 
+use Core\Controller;
 use Core\Routing\Request;
 
-class MainController
+class MainController extends Controller
 {
 
     public function index()
     {
-        global $renderer;
-        $renderer->render('index');
+        $this->render('index');
     }
 
     public function aboutme()
     {
-        global $renderer;
-        $renderer->render('aboutme');
+        $this->render('aboutme');
     }
 
     public function interests()
     {
-        global $renderer;
-        $renderer->render('interests');
+        $this->render('interests');
     }
 
     public function education()
     {
-        global $renderer;
-        $renderer->render('education');
+        $this->render('education');
     }
 
     public function history()
     {
-        global $renderer;
-        $renderer->render('history');
+        $this->render('history');
     }
 
 }

@@ -44,4 +44,14 @@ $router->route('GET', '/', function($request) {
     (new \App\ResourcesController())->uploaded($request->get('id'));
 })->route('POST', '/blog/import', function($request) {
     (new \App\BlogController())->import();
+})->route('GET', '/register', function($request) {
+    (new \App\AuthController())->showRegisterForm();
+})->route('POST', '/register', function($request) {
+    (new \App\AuthController())->register($request);
+})->route('GET', '/auth', function($request) {
+    (new \App\AuthController())->showLoginForm();
+})->route('POST', '/auth', function($request) {
+    (new \App\AuthController())->login($request);
+})->route('GET', '/logout', function($request) {
+    (new \App\AuthController())->logout();
 });

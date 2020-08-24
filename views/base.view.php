@@ -37,8 +37,15 @@
         <a href='/history' id='history'>History</a>
         <a href='/feedback' id='feedback'>Feedback</a>
         <a href='/blog' id='blog'>Blog</a>
-        <a href='https://time100.ru/' id='timer'></a>
+<!--        <a href='https://time100.ru/' id='timer'></a>-->
         <a class='icon' href='javascript:void();' onclick='toggleNav()' style='font-size:15px;'>%#9776;</a>
+        <?php if (authenticated()) {?>
+            <a href="/logout"><i class="fa fa-fw fa-user"></i> Logout</a>
+            <a>Пользователь: <?=username()?></a>
+        <?php } else { ?>
+            <a href="/auth"><i class="fa fa-fw fa-user"></i> Login</a>
+            <a href="/register">Register</a>
+        <?php } ?>
     </nav>
 </header>
 <main>

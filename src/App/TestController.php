@@ -7,13 +7,14 @@ namespace App;
 use App\Model\FullNameRule;
 use App\Model\GroupRule;
 use App\Model\TestRepository;
+use Core\Controller;
 use Core\Model\FormField;
 use Core\Model\FormValidator;
 use Core\Model\Rule\EqualsSecret;
 use Core\Model\Rule\Required;
 use Core\Routing\Request;
 
-class TestController
+class TestController extends Controller
 {
 
     private $repository;
@@ -24,12 +25,10 @@ class TestController
     }
 
     public function showTest() {
-        global $renderer;
-        $renderer->render('test');
+        $this->render('test');
     }
 
     public function checkTest(Request $request) {
-        global $renderer;
         $validator = (new FormValidator())
             ->add('fio', new FormField('ФИО', [
                 new Required(),
@@ -52,10 +51,10 @@ class TestController
                 new EqualsSecret('выборочная совокупность – часть генеральной')
             ]));
         if ($validator->validate($request->form())) {
-            $renderer->render('test', ['passed' => true]);
+            $this->render('test', ['passed' => true]);
             $passed = true;
         } else {
-            $renderer->render('test', ['keeper' => $request->form(), 'errors' => $validator->getErrors()]);
+            $this->render('test', ['keeper' => $request->form(), 'errors' => $validator->getErrors()]);
             $passed = false;
         }
         $data = $request->form();
@@ -66,8 +65,7 @@ class TestController
 
     public function showResults()
     {
-        global $renderer;
-        $renderer->render('test_results', ['data' => $this->repository->getResults()]);
+        $this->render('test_results', ['data' => $this->repository->getResults()]);
     }
 
 
