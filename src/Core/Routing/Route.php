@@ -26,6 +26,7 @@ class Route
             if ($this->handler != null) {
                 $handler = $this->handler;
                 if (isset($handler)) {
+                    \Core\Statistics::commit();
                     $handler($request);
                     return;
                 }

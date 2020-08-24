@@ -54,4 +54,8 @@ $router->route('GET', '/', function($request) {
     (new \App\AuthController())->login($request);
 })->route('GET', '/logout', function($request) {
     (new \App\AuthController())->logout();
+})->route('GET', '/admin/stats', function($request) {
+    (new \App\AdminPageController())->showStatistics(1);
+})->route('GET', '/admin/stats/page/{page}', function($request) {
+    (new \App\AdminPageController())->showStatistics($request->get('page'));
 });

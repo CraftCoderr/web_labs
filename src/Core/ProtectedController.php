@@ -4,19 +4,45 @@
 namespace Core;
 
 
+use App\Model\UserRepository;
+
 class ProtectedController extends Controller
 {
     private $authPage = '/auth';
-    private $user;
+
+    private $repository;
+
+    /**
+     * ProtectedController constructor.
+     */
+    public function __construct()
+    {
+        $this->repository = new UserRepository();
+    }
+
 
     protected function authenticate()
     {
-        session_start();
-        if (isset($_SESSION['auth']) && isset($_SESSION['user']) && $_SESSION['auth'] == true) {
-            $user = $_SESSION['user'];
-        } else {
-            $this->redirect($this->authPage);
+        if (isset($_SESSION['auth'])) {
+            $user = $this->repository->getUser($_SESSION['auth']);
+            if ($user != null) {
+                $user_data = [
+                    'username' => $user['username'],
+                    'fio' => $user['fio'],
+                    'email' => $user['email']
+                ];
+                $_SESSION['user_data'] = $user_data;
+                unset($user['password']);
+                $_SESSION['user'] = $user;
+                return;
+            }
         }
+        $this->redirect($this->authPage);
+    }
+
+    protected function user()
+    {
+        return $_SESSION['user'];
     }
 
 }

@@ -41,7 +41,7 @@
         <a class='icon' href='javascript:void();' onclick='toggleNav()' style='font-size:15px;'>%#9776;</a>
         <?php if (authenticated()) {?>
             <a href="/logout"><i class="fa fa-fw fa-user"></i> Logout</a>
-            <a>Пользователь: <?=username()?></a>
+            <a>Пользователь: <?=userData()['fio']?></a>
         <?php } else { ?>
             <a href="/auth"><i class="fa fa-fw fa-user"></i> Login</a>
             <a href="/register">Register</a>
@@ -52,8 +52,8 @@
     <?php emptyblock('content') ?>
 </main>
 <?php emptyblock('dynamic') ?>
-<script src='js/header.js'></script>
-<script src='js/jquery-3.4.1.js'></script>
+<script src='/js/header.js'></script>
+<script src='/js/jquery-3.4.1.js'></script>
 <?php emptyblock('scripts') ?>
 </body>
 </html>

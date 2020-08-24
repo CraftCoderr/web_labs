@@ -31,11 +31,11 @@ function keepCheckedValue($model, $key, $value) {
 }
 
 function authenticated() {
-    return isset($_SESSION['user']) && $_SESSION['user'] != null;
+    return isset($_SESSION['auth']) && $_SESSION['auth'] != null;
 }
 
-function username() {
-    return $_SESSION['user'];
+function userData() {
+    return $_SESSION['user_data'];
 }
 
 ?>

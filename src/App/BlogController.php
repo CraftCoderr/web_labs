@@ -6,6 +6,7 @@ namespace App;
 
 use App\Model\BlogRepository;
 use App\Model\FullNameRule;
+use Core\AdminController;
 use Core\Controller;
 use Core\DB;
 use Core\Files;
@@ -18,7 +19,7 @@ use Core\Routing\Request;
 use Core\Routing\RouteNotFound;
 use PDO;
 
-class BlogController extends Controller
+class BlogController extends AdminController
 {
     private static $PAGE_SIZE = 5;
 
@@ -26,6 +27,7 @@ class BlogController extends Controller
 
     public function __construct()
     {
+        parent::__construct();
         $this->repository = new BlogRepository();
     }
 
@@ -40,11 +42,15 @@ class BlogController extends Controller
 
     public function postForm()
     {
+        $this->checkAdmin();
+
         $this->render('blog_form');
     }
 
     public function makePost(Request $request)
     {
+        $this->checkAdmin();
+
         $validator = (new FormValidator())
             ->add('title', new FormField('Заголовок', [
                 new Required()
@@ -69,6 +75,8 @@ class BlogController extends Controller
     }
 
     public function import() {
+        $this->checkAdmin();
+
         $success = false;
         if (filesize($_FILES['posts']['tmp_name']) !== 0) {
             if (($handle = fopen($_FILES['posts']['tmp_name'], "r")) !== FALSE) {

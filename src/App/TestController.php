@@ -7,20 +7,21 @@ namespace App;
 use App\Model\FullNameRule;
 use App\Model\GroupRule;
 use App\Model\TestRepository;
-use Core\Controller;
 use Core\Model\FormField;
 use Core\Model\FormValidator;
 use Core\Model\Rule\EqualsSecret;
 use Core\Model\Rule\Required;
+use Core\ProtectedController;
 use Core\Routing\Request;
 
-class TestController extends Controller
+class TestController extends ProtectedController
 {
 
     private $repository;
 
     public function __construct()
     {
+        parent::__construct();
         $this->repository = new TestRepository();
     }
 
@@ -65,6 +66,7 @@ class TestController extends Controller
 
     public function showResults()
     {
+        $this->authenticate();
         $this->render('test_results', ['data' => $this->repository->getResults()]);
     }
 

@@ -30,3 +30,13 @@ CREATE TABLE `user`(
   UNIQUE (username),
   UNIQUE (email)
 );
+
+CREATE TABLE website_view(
+    view_id INT AUTO_INCREMENT,
+    date DATETIME,
+    page VARCHAR(255),
+    ip_address VARCHAR(255),
+    hostname VARCHAR(255),
+    browser VARCHAR(255),
+    PRIMARY KEY (view_id)
+);
