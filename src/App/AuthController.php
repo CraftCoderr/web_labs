@@ -46,8 +46,7 @@ class AuthController extends Controller
         if ($validator->validate($data)) {
             $user = $this->repository->getUser($data['username']);
             if ($user != null && $user['password'] === sha1($data['password'])) {
-                session_start();
-                $_SESSION['auth'] = $user['username'];
+                $this->setupSession($user);
                 $this->redirect('/');
             } else {
                 $validator->error('login', 'Неправильное имя пользователя или пароль');
@@ -87,7 +86,7 @@ class AuthController extends Controller
         if ($validator->validate($data)) {
             $data['password'] = sha1($data['password']);
             if ($this->repository->createUser($data)) {
-                $_SESSION['auth'] = $data['username'];
+                $this->setupSession($data);
                 $this->redirect('/');
             } else {
                 $validator->error('register', 'Пользователь с таким именем пользователя или e-mail уже зарегистрирован');
@@ -102,7 +101,19 @@ class AuthController extends Controller
     public function logout()
     {
         unset($_SESSION['auth']);
+        unset($_SESSION['user']);
+        unset($_SESSION['user_data']);
         $this->redirect('/');
+    }
+
+    private function setupSession($user) {
+        $_SESSION['auth'] = $user['username'];
+        $user_data = [
+            'username' => $user['username'],
+            'fio' => $user['fio'],
+            'email' => $user['email']
+        ];
+        $_SESSION['user_data'] = $user_data;
     }
 
 }

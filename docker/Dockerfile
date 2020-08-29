@@ -3,7 +3,6 @@ FROM debian:stretch
 # https://getcomposer.org/doc/03-cli.md#composer-allow-superuser
 ENV COMPOSER_ALLOW_SUPERUSER 1
 ENV PERFORMANCE_OPTIM false
-ENV SYMFONY_VERSION 5
 
 RUN apt-get -qq update > /dev/null && DEBIAN_FRONTEND=noninteractive apt-get -qq -y --no-install-recommends install \
     supervisor \

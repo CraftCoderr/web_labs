@@ -11,10 +11,16 @@ class FullNameRule implements FormRule
 
     public function check($value)
     {
-        if (preg_match('([А-Яа-яA-Za-z]+ [А-Яа-яA-Za-z]+ [А-Яа-яA-Za-z]+)', $value, $m)) {
-            return $value == $m[0];
+        $parts = explode(' ', trim($value));
+        if (count($parts) != 3) {
+            return false;
         }
-        return false;
+        for ($i = 0; $i < 3; $i++) {
+            if (strlen($parts[$i]) == 0) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public function getError($title): string
