@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Model;
+namespace App\Model\Rule;
 
 
 use Core\Model\FormRule;

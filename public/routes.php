@@ -40,6 +40,8 @@ $router->route('GET', '/', function($request) {
     (new \App\BlogController)->postForm();
 })->route('POST', '/blog/post', function($request) {
     (new \App\BlogController)->makePost($request);
+})->route('POST', '/blog/comment', function($request) {
+    (new \App\BlogController)->makeComment($request);
 })->route('GET', '/uploaded/{id}', function($request) {
     (new \App\ResourcesController())->uploaded($request->get('id'));
 })->route('POST', '/blog/import', function($request) {
@@ -48,6 +50,8 @@ $router->route('GET', '/', function($request) {
     (new \App\AuthController())->showRegisterForm();
 })->route('POST', '/register', function($request) {
     (new \App\AuthController())->register($request);
+})->route('POST', '/register/check', function($request) {
+    (new \App\AuthController())->checkRegister($request);
 })->route('GET', '/auth', function($request) {
     (new \App\AuthController())->showLoginForm();
 })->route('POST', '/auth', function($request) {

@@ -10,6 +10,7 @@ class Request
     private $fullPath;
     private $parameters;
     private $form;
+    private $body;
     public $method;
 
     /**
@@ -49,6 +50,13 @@ class Request
             $this->form = $_POST;
         }
         return $this->form;
+    }
+
+    public function body() {
+        if ($this->body == null) {
+            $this->body = file_get_contents('php://input');
+        }
+        return $this->body;
     }
 
 }

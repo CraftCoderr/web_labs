@@ -4,7 +4,7 @@
 namespace App;
 
 
-use App\Model\StatisticsRepository;
+use App\Model\Repository\StatisticsRepository;
 use Core\AdminController;
 use Core\Routing\RouteNotFound;
 

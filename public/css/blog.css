@@ -11,3 +11,25 @@
 .post img {
   max-width: 100%;
 }
+
+.comment {
+  margin-left: 15%;
+  width: 70%;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  background-color: var(--main-bg-color);
+  padding: 4px;
+}
+
+.comment > h4,h6,p {
+  margin-top: 1rem;
+  margin-bottom: 2px;
+}
+
+form {
+  width: 95%;
+  margin: 0 auto; }
+
+textarea {
+  height: 180px;
+  width: 92%; }

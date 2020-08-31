@@ -5,7 +5,6 @@ namespace App;
 
 
 use Core\Controller;
-use Core\Routing\Request;
 
 class MainController extends Controller
 {

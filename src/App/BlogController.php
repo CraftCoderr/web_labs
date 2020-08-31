@@ -4,20 +4,15 @@
 namespace App;
 
 
-use App\Model\BlogRepository;
-use App\Model\FullNameRule;
+use App\Model\Repository\BlogRepository;
 use Core\AdminController;
-use Core\Controller;
-use Core\DB;
 use Core\Files;
 use Core\Model\FormField;
 use Core\Model\FormValidator;
-use Core\Model\Rule\Date;
-use Core\Model\Rule\Email;
 use Core\Model\Rule\Required;
 use Core\Routing\Request;
 use Core\Routing\RouteNotFound;
-use PDO;
+use lib\JsHttpRequest;
 
 class BlogController extends AdminController
 {
@@ -108,6 +103,44 @@ class BlogController extends AdminController
             }
         }
         $this->render('blog_form', ['import_success' => $success]);
+    }
+
+    public function makeComment(Request $request)
+    {
+        $this->authenticate();
+
+        new JsHttpRequest("utf-8");
+        $commentData['text'] = $_REQUEST['text'];
+        $validator = (new FormValidator())
+            ->add('text', new FormField('Текст комментария', [
+                new Required()
+            ]));
+
+        if ($validator->validate($commentData)) {
+            $commentData['post_id'] = $_REQUEST['post_id'];
+            $commentData['date'] = (new \DateTime())->format('Y-m-d H:i:s');
+            $commentData['user_id'] = $this->user()->getId();
+            $comment = $this->repository->createComment($commentData);
+            if ($comment) {
+                $result = [
+                    'user_id' => $comment->getUserId(),
+                    'post_id' => $comment->getPostId(),
+                    'date' => $comment->getDate(),
+                    'text' => $comment->getText()
+                ];
+            } else {
+                $result = false;
+            }
+        } else {
+            $result = false;
+        }
+
+        $GLOBALS['_RESULT'] = [
+            'result' => $result,
+            'username' => $this->user()->getUsername(),
+            'errors' => $validator->getErrors()
+        ];
+
     }
 
 }

@@ -29,3 +29,37 @@
     </p>
 </form>
 <?php endblock() ?>
+
+<?php startblock('scripts') ?>
+<script>
+
+  let input = document.getElementById('username')
+  input.addEventListener('change', checkUsername, false)
+  input.addEventListener('keyup', checkUsername, false)
+
+  function checkUsername() {
+    let username = input.value
+    fetch('/register/check', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/xml',
+        'Content-Type': 'application/xml'
+      },
+      body: '<data username="' + username + '" />'
+    })
+    .then(response => response.text().then(xml => {
+      let parser = new DOMParser();
+      let xmlDoc = parser.parseFromString(xml, "text/xml");
+      const result = xmlDoc.getElementsByTagName('check')[0].getAttribute('username');
+      if (result === 'valid') {
+        input.classList.remove('invalid');
+        input.classList.add('valid');
+      } else {
+        input.classList.remove('valid');
+        input.classList.add('invalid');
+      }
+    }))
+    .catch(error => console.log(error));
+  }
+</script>
+<?php endblock() ?>

@@ -4,7 +4,7 @@
 namespace Core;
 
 
-use App\Model\UserRepository;
+use App\Model\Repository\UserRepository;
 
 class ProtectedController extends Controller
 {
@@ -27,12 +27,12 @@ class ProtectedController extends Controller
             $user = $this->repository->getUser($_SESSION['auth']);
             if ($user != null) {
                 $user_data = [
-                    'username' => $user['username'],
-                    'fio' => $user['fio'],
-                    'email' => $user['email']
+                    'username' => $user->getUsername(),
+                    'fio' => $user->getFio(),
+                    'email' => $user->getEmail()
                 ];
                 $_SESSION['user_data'] = $user_data;
-                unset($user['password']);
+                $user->clearCredentials();
                 $_SESSION['user'] = $user;
                 return;
             }

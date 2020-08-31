@@ -23,7 +23,7 @@ window.addEventListener('load', (event) => {
   setInterval(function () {
     var date = new Date()
     var dateStr = date.getDate() + ' ' + monthNames[date.getMonth()] + ' ' + date.getFullYear()
-    document.getElementById('timer').textContent = dateStr
+    // document.getElementById('timer').textContent = dateStr
   }, 1000)
 
   var children = document.getElementById('mainNav').children

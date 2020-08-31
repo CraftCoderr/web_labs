@@ -4,8 +4,9 @@
 namespace App;
 
 
-use App\Model\FullNameRule;
-use App\Model\UserRepository;
+use App\Model\Rule\FullNameRule;
+use App\Model\Repository\UserRepository;
+use App\Model\User;
 use Core\Controller;
 use Core\Model\FormField;
 use Core\Model\FormValidator;
@@ -45,7 +46,7 @@ class AuthController extends Controller
         $data = $request->form();
         if ($validator->validate($data)) {
             $user = $this->repository->getUser($data['username']);
-            if ($user != null && $user['password'] === sha1($data['password'])) {
+            if ($user != null && $user->getPassword() === sha1($data['password'])) {
                 $this->setupSession($user);
                 $this->redirect('/');
             } else {
@@ -61,6 +62,19 @@ class AuthController extends Controller
     public function showRegisterForm()
     {
         $this->render('register');
+    }
+
+    public function checkRegister(Request $request)
+    {
+        $xmldata = new \SimpleXMLElement($request->body());
+        $username = $xmldata['username'];
+
+        if ($this->repository->checkUsernameExists($username)) {
+            $result = 'invalid';
+        } else {
+            $result = 'valid';
+        }
+        $this->response('<check username="'.$result.'" />', 'application/xml');
     }
 
     public function register(Request $request)
@@ -106,12 +120,12 @@ class AuthController extends Controller
         $this->redirect('/');
     }
 
-    private function setupSession($user) {
-        $_SESSION['auth'] = $user['username'];
+    private function setupSession(User $user) {
+        $_SESSION['auth'] = $user->getUsername();
         $user_data = [
-            'username' => $user['username'],
-            'fio' => $user['fio'],
-            'email' => $user['email']
+            'username' => $user->getUsername(),
+            'fio' => $user->getFio(),
+            'email' => $user->getEmail()
         ];
         $_SESSION['user_data'] = $user_data;
     }

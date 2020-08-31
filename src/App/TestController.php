@@ -4,9 +4,9 @@
 namespace App;
 
 
-use App\Model\FullNameRule;
-use App\Model\GroupRule;
-use App\Model\TestRepository;
+use App\Model\Rule\FullNameRule;
+use App\Model\Rule\GroupRule;
+use App\Model\Repository\TestRepository;
 use Core\Model\FormField;
 use Core\Model\FormValidator;
 use Core\Model\Rule\EqualsSecret;

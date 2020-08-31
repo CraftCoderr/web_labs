@@ -4,7 +4,7 @@
 namespace App;
 
 
-use App\Model\FullNameRule;
+use App\Model\Rule\FullNameRule;
 use Core\Controller;
 use Core\Model\FormField;
 use Core\Model\FormValidator;

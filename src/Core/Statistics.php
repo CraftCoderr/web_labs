@@ -4,7 +4,7 @@
 namespace Core;
 
 
-use App\Model\StatisticsRepository;
+use App\Model\Repository\StatisticsRepository;
 
 class Statistics
 {

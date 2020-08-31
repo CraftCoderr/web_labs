@@ -1,13 +1,13 @@
 CREATE TABLE test_result(
-                            test_id INT AUTO_INCREMENT,
-                            date DATETIME,
-                            full_name VARCHAR(255),
-                            student_group VARCHAR(255),
-                            answer1 VARCHAR(255),
-                            answer2 VARCHAR(255),
-                            answer3 VARCHAR(255),
-                            result BOOLEAN,
-                            PRIMARY KEY (test_id)
+    test_id INT AUTO_INCREMENT,
+    date DATETIME,
+    full_name VARCHAR(255),
+    student_group VARCHAR(255),
+    answer1 VARCHAR(255),
+    answer2 VARCHAR(255),
+    answer3 VARCHAR(255),
+    result BOOLEAN,
+    PRIMARY KEY (test_id)
 );
 
 CREATE TABLE blog_post(
@@ -20,15 +20,15 @@ CREATE TABLE blog_post(
 );
 
 CREATE TABLE `user`(
-  user_id INT AUTO_INCREMENT,
-  username VARCHAR(255),
-  email VARCHAR(255),
-  password VARCHAR(255),
-  fio VARCHAR(255),
-  is_admin BOOLEAN DEFAULT FALSE,
-  PRIMARY KEY (user_id),
-  UNIQUE (username),
-  UNIQUE (email)
+    user_id INT AUTO_INCREMENT,
+    username VARCHAR(255),
+    email VARCHAR(255),
+    password VARCHAR(255),
+    fio VARCHAR(255),
+    is_admin BOOLEAN DEFAULT FALSE,
+    PRIMARY KEY (user_id),
+    UNIQUE (username),
+    UNIQUE (email)
 );
 
 CREATE TABLE website_view(
@@ -39,4 +39,15 @@ CREATE TABLE website_view(
     hostname VARCHAR(255),
     browser VARCHAR(255),
     PRIMARY KEY (view_id)
+);
+
+CREATE TABLE post_comment(
+    comment_id INT AUTO_INCREMENT,
+    user_id INT,
+    post_id INT,
+    date DATETIME,
+    text TEXT,
+    PRIMARY KEY (comment_id),
+    FOREIGN KEY (user_id) REFERENCES `user`(user_id) ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY (post_id) REFERENCES blog_post(post_id) ON UPDATE CASCADE ON DELETE CASCADE
 );

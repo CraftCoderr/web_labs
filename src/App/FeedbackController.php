@@ -4,15 +4,12 @@
 namespace App;
 
 
-use App\Model\FeedbackRepository;
-use App\Model\FullNameRule;
+use App\Model\Repository\FeedbackRepository;
+use App\Model\Rule\FullNameRule;
 use Core\Controller;
 use Core\Model\FormField;
 use Core\Model\FormValidator;
-use Core\Model\Rule\Date;
 use Core\Model\Rule\Email;
-use Core\Model\Rule\Number;
-use Core\Model\Rule\PhoneNumber;
 use Core\Model\Rule\Required;
 use Core\Routing\Request;
 

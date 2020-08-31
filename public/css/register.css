@@ -147,3 +147,13 @@ textarea {
 .button {
   padding: 5px;
   background-color: #5046d6; }
+
+.valid {
+  border: 0;
+  border-bottom: 5px solid rgb(31, 219, 31);
+}
+
+.invalid {
+  border: 0;
+  border-bottom: 5px solid rgb(255, 75, 75);
+}
