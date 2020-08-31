@@ -38,6 +38,8 @@ $router->route('GET', '/', function($request) {
     (new \App\BlogController)->show($request->get('page'));
 })->route('GET', '/blog/post', function($request) {
     (new \App\BlogController)->postForm();
+})->route('GET', '/blog/post/edit', function($request) {
+    (new \App\BlogController)->editPost($request);
 })->route('POST', '/blog/post', function($request) {
     (new \App\BlogController)->makePost($request);
 })->route('POST', '/blog/comment', function($request) {

@@ -10,7 +10,7 @@ class AdminController extends ProtectedController
     public function checkAdmin()
     {
         $this->authenticate();
-        if (!$this->user()['is_admin']) {
+        if (!$this->user()->isAdmin()) {
             $this->redirect('/');
         }
     }

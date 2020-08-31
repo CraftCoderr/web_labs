@@ -39,6 +39,10 @@
         text-decoration: none;
         cursor: pointer;
     }
+
+    .form-content {
+        display: none;
+    }
 </style>
 <?php endblock() ?>
 
@@ -48,6 +52,9 @@
     <div class="post" id="post<?=$post->getId()?>">
         <h3><?=$post->getTitle()?></h3>
         <h6><?=$post->getDate()?></h6>
+        <?php if (authenticated() && user()->isAdmin()) {?>
+            <button onclick="openEditModal(<?=$post->getId()?>)">Редактировать</button>
+        <?php } ?>
         <?php if ($post->hasImage()) { ?>
             <img src="/uploaded/<?=$post->getImage()?>" alt="">
         <?php } ?>
@@ -63,23 +70,37 @@
             <?php } ?>
         </div>
         <?php if (authenticated()) {?>
-            <button onclick="openModal(<?=$post->getId()?>)">Оставить комментарий</button>
+            <button onclick="openCommentModal(<?=$post->getId()?>)">Оставить комментарий</button>
         <?php } ?>
     </div>
 <?php } ?>
 <?php endblock() ?>
 
 <?php startblock('dynamic') ?>
-<div id="myModal" class="modal">
-    <!-- Modal content -->
+<div id="commentFormContent" class="form-content">
+    <form id="commentForm" name="commentForm">
+        <label for="comment_text">Текст комментария</label>
+        <textarea id="comment_text" name="comment_text"></textarea>
+        <input type="text" id="post_id" hidden>
+        <input onclick="makeComment()" type="button" value="Отправить">
+    </form>
+</div>
+<div id="editFormContent" class="form-content">
+    <form id="editForm" name="editForm">
+        <label for="title">Заголовок</label>
+        <input type="text" id="title" name="title">
+        <label for="text">Текст</label>
+        <textarea id="text" name="text"></textarea>
+        <input type="text" id="post_id" hidden>
+        <input onclick="updatePost()" type="button" value="Обновить">
+    </form>
+</div>
+<div id="modal" class="modal">
     <div class="modal-content">
         <span class="close">&times;</span>
-        <form id="commentForm" name="commentForm">
-            <label for="comment_text">Текст комментария</label>
-            <textarea id="comment_text" name="comment_text"></textarea>
-            <input type="text" id="post_id" hidden>
-            <input onclick="makeComment()" type="button" value="Отправить">
-        </form>
+        <div id="modalContainer">
+
+        </div>
     </div>
 </div>
 <?php endblock() ?>
@@ -87,28 +108,51 @@
 <?php startblock('scripts') ?>
 <script src="/js/lib/JsHttpRequest/JsHttpRequest.js"></script>
 <script type="text/javascript">
-  // Get the modal
-  var modal = document.getElementById("myModal");
+  let modal = document.getElementById("modal");
+  let span = document.getElementsByClassName("close")[0];
+  let modalContainer = document.getElementById('modalContainer');
 
-  // Get the <span> element that closes the modal
-  var span = document.getElementsByClassName("close")[0];
+  let commentFormContent = document.getElementById('commentFormContent');
+  let commentFormContentHTML = commentFormContent.innerHTML;
+  document.body.removeChild(commentFormContent);
 
-  let commentForm = document.forms['commentForm'];
+  let editFormContent = document.getElementById('editFormContent');
+  let editFormContentHTML = editFormContent.innerHTML;
+  document.body.removeChild(editFormContent);
 
-  // When the user clicks on the button, open the modal
-  function openModal($postId) {
-    commentForm['post_id'].value = $postId;
+  function getPostTitle(postId) {
+    let postTag = document.getElementById('post' + postId);
+    return postTag.getElementsByTagName('h3')[0].innerText;
+  }
+
+  function getPostText(postId) {
+    let postTag = document.getElementById('post' + postId);
+    return postTag.getElementsByTagName('p')[0].innerText;
+  }
+
+
+  function openCommentModal(postId) {
+    modalContainer.innerHTML = commentFormContentHTML;
     modal.style.display = "block";
+    let form = document.forms['commentForm'];
+    form['post_id'].value = postId;
+  }
+
+  function openEditModal(postId) {
+    modalContainer.innerHTML = editFormContentHTML;
+    modal.style.display = "block";
+    let form = document.forms['editForm'];
+    form['post_id'].value = postId;
+    form['title'].value = getPostTitle(postId);
+    form['text'].value = getPostText(postId);
   }
 
   function closeModal() {
     modal.style.display = "none";
+    modalContainer.innerHTML = '';
   }
 
-  // When the user clicks on <span> (x), close the modal
-  span.onclick = closeModal();
-
-  // When the user clicks anywhere outside of the modal, close it
+  span.onclick = closeModal;
   window.onclick = function(event) {
     if (event.target === modal) {
       closeModal();
@@ -132,24 +176,48 @@
   }
 
   function makeComment() {
-
+    let form = document.forms['commentForm'];
     JsHttpRequest.query(
-    'form.POST /blog/comment',
-    {
-      text: commentForm['comment_text'].value,
-      post_id: commentForm['post_id'].value
-    },
-    function (result, errors) {
-      if (result['result']) {
-        closeModal();
-        renderNewComment(result['result'], result['username'])
-      } else {
-        alert(JSON.stringify(result['errors']));
+      'form.POST /blog/comment',
+      {
+        text: form['comment_text'].value,
+        post_id: form['post_id'].value
+      },
+      function (result, errors) {
+        if (result['result']) {
+          closeModal();
+          renderNewComment(result['result'], result['username'])
+        } else {
+          alert(JSON.stringify(result['errors']));
+        }
       }
-    }
     );
-    commentForm['comment_text'].value = '';
-    commentForm['post_id'] = '';
+  }
+
+  function rerenderPost(post) {
+    let postTag = document.getElementById('post' + post['post_id']);
+    postTag.getElementsByTagName('h3')[0].innerText = post['title'];
+    postTag.getElementsByTagName('p')[0].innerText = post['text'];
+  }
+
+  function updatePost() {
+    let form = document.forms['editForm'];
+    JsHttpRequest.query(
+      'script.GET /blog/post/edit',
+      {
+        title: form['title'].value,
+        text: form['text'].value,
+        post_id: form['post_id'].value
+      },
+      function (result, errors) {
+        if (result['result']) {
+          closeModal();
+          rerenderPost(result['result'])
+        } else {
+          alert(JSON.stringify(result['errors']));
+        }
+      }
+    );
   }
 </script>
 <?php endblock() ?>

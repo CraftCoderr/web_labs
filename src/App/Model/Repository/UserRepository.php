@@ -25,7 +25,7 @@ class UserRepository
                 $userData['email'],
                 $userData['password'],
                 $userData['fio'],
-                $userData['isAdmin']
+                $userData['is_admin']
             );
         }
         return null;
@@ -45,7 +45,7 @@ class UserRepository
                 $userData['email'],
                 $userData['password'],
                 $userData['fio'],
-                $userData['isAdmin']
+                $userData['is_admin']
             );
         }
         return null;
@@ -59,20 +59,30 @@ class UserRepository
         return $exists ? true : false;
     }
 
-    public function createUser($userdata) : bool
+    public function createUser($userdata)
     {
         $connection = DB::connect();
         $stmt = $connection->prepare('INSERT INTO `user`(username, email, password, fio) VALUES '
-            .'(?, ?, ?, ?)');
+            .'(?, ?, ?, ?);');
         $stmt->bindValue(1, $userdata['username']);
         $stmt->bindValue(2, $userdata['email']);
         $stmt->bindValue(3, $userdata['password']);
         $stmt->bindValue(4, $userdata['fio']);
         try {
             $stmt->execute();
-            return $stmt->rowCount() == 1;
+            if ($stmt->rowCount()) {
+                return new User(
+                    $connection->lastInsertId(),
+                    $userdata['username'],
+                    $userdata['email'],
+                    $userdata['password'],
+                    $userdata['fio'],
+                    false);
+            } else {
+                return null;
+            }
         } catch (\Exception $e) {
-            return false;
+            return null;
         }
     }
 

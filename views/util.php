@@ -38,4 +38,8 @@ function userData() {
     return $_SESSION['user_data'];
 }
 
+function user() {
+    return $_SESSION['user'];
+}
+
 ?>

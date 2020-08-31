@@ -57,6 +57,16 @@ class BlogRepository
         return $stmt->rowCount() == 1;
     }
 
+    public function updatePost($postData)
+    {
+        $stmt = DB::connect()->prepare('UPDATE blog_post SET title = ?, text = ? WHERE post_id = ?');
+        $stmt->bindValue(1, $postData['title']);
+        $stmt->bindValue(2, $postData['text']);
+        $stmt->bindValue(3, $postData['post_id']);
+        $stmt->execute();
+        return $stmt->rowCount() == 1;
+    }
+
     public function getComments($postId)
     {
         $stmt = DB::connect()->prepare('SELECT * FROM post_comment WHERE post_id = ?');

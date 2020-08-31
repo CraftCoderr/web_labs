@@ -105,6 +105,38 @@ class BlogController extends AdminController
         $this->render('blog_form', ['import_success' => $success]);
     }
 
+    public function editPost(Request $request)
+    {
+        $this->checkAdmin();
+
+        new JsHttpRequest("utf-8");
+        $postData['title'] = $_REQUEST['title'];
+        $postData['text'] = $_REQUEST['text'];
+        $validator = (new FormValidator())
+            ->add('title', new FormField('Заголовок', [
+                new Required()
+            ]))
+            ->add('text', new FormField('Текст', [
+                new Required()
+            ]));
+
+        if ($validator->validate($postData)) {
+            $postData['post_id'] = $_REQUEST['post_id'];
+            if ($this->repository->updatePost($postData)) {
+                $result = $postData;
+            } else {
+                $result = false;
+            }
+        } else {
+            $result = false;
+        }
+
+        $GLOBALS['_RESULT'] = [
+            'result' => $result,
+            'errors' => $validator->getErrors()
+        ];
+    }
+
     public function makeComment(Request $request)
     {
         $this->authenticate();

@@ -76,7 +76,7 @@ class User
     /**
      * @return mixed
      */
-    public function getIsAdmin()
+    public function isAdmin()
     {
         return $this->isAdmin;
     }

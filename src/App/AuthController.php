@@ -99,8 +99,8 @@ class AuthController extends Controller
         $data = $request->form();
         if ($validator->validate($data)) {
             $data['password'] = sha1($data['password']);
-            if ($this->repository->createUser($data)) {
-                $this->setupSession($data);
+            if ($user = $this->repository->createUser($data)) {
+                $this->setupSession($user);
                 $this->redirect('/');
             } else {
                 $validator->error('register', 'Пользователь с таким именем пользователя или e-mail уже зарегистрирован');
@@ -128,6 +128,8 @@ class AuthController extends Controller
             'email' => $user->getEmail()
         ];
         $_SESSION['user_data'] = $user_data;
+        $user->clearCredentials();
+        $_SESSION['user'] = $user;
     }
 
 }
