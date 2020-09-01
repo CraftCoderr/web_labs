@@ -74,13 +74,21 @@
         <?php } ?>
     </div>
 <?php } ?>
+<div class="pagination">
+    <?php for ($i = 1; $i <= $model['pages']; $i++) { ?>
+        <a href="/blog/page/<?=$i?>"
+           <?php if ($i == $model['page']) { ?>class="active"<?php } ?>
+        ><?=$i?></a>
+    <?php } ?>
+</div>
 <?php endblock() ?>
 
 <?php startblock('dynamic') ?>
 <div id="commentFormContent" class="form-content">
     <form id="commentForm" name="commentForm">
-        <label for="comment_text">Текст комментария</label>
-        <textarea id="comment_text" name="comment_text"></textarea>
+        <label for="text">Текст комментария</label>
+        <ul class="errorbox" id="errorbox-text"></ul>
+        <textarea id="text" name="text"></textarea>
         <input type="text" id="post_id" hidden>
         <input onclick="makeComment()" type="button" value="Отправить">
     </form>
@@ -88,8 +96,10 @@
 <div id="editFormContent" class="form-content">
     <form id="editForm" name="editForm">
         <label for="title">Заголовок</label>
+        <ul class="errorbox" id="errorbox-title"></ul>
         <input type="text" id="title" name="title">
         <label for="text">Текст</label>
+        <ul class="errorbox" id="errorbox-text"></ul>
         <textarea id="text" name="text"></textarea>
         <input type="text" id="post_id" hidden>
         <input onclick="updatePost()" type="button" value="Обновить">
@@ -159,6 +169,19 @@
     }
   }
 
+  function renderErrors(errors) {
+    for (const [key, fieldErrors] of Object.entries(errors)) {
+      let errorbox = document.getElementById('errorbox-' + key);
+      errorbox.innerHTML = ''; //clear previous errors
+      errorbox.style.display = 'block';
+      for (const error of fieldErrors) {
+        let errorTag = document.createElement('li');
+        errorTag.innerText = error;
+        errorbox.appendChild(errorTag);
+      }
+    }
+  }
+
   function renderNewComment(comment, username) {
     let comments = document.getElementById('comments' + comment['post_id']);
     let commentTag = document.createElement('div');
@@ -180,7 +203,7 @@
     JsHttpRequest.query(
       'form.POST /blog/comment',
       {
-        text: form['comment_text'].value,
+        text: form['text'].value,
         post_id: form['post_id'].value
       },
       function (result, errors) {
@@ -188,7 +211,7 @@
           closeModal();
           renderNewComment(result['result'], result['username'])
         } else {
-          alert(JSON.stringify(result['errors']));
+          renderErrors(result['errors']);
         }
       }
     );
@@ -214,7 +237,7 @@
           closeModal();
           rerenderPost(result['result'])
         } else {
-          alert(JSON.stringify(result['errors']));
+          renderErrors(result['errors']);
         }
       }
     );

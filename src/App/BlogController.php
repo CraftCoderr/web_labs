@@ -27,12 +27,12 @@ class BlogController extends AdminController
     }
 
     public function show($page) {
-        $count = $this->repository->getCount();
-        if (($page > ceil($count / self::$PAGE_SIZE) && $page != 1) || $page < 1 ) {
+        $pageCount = ceil($this->repository->getCount()/ self::$PAGE_SIZE) ?: 1;
+        if ($page > $pageCount || $page < 1 ) {
             throw new RouteNotFound();
         }
         $posts = $this->repository->getPosts($page, self::$PAGE_SIZE);
-        $this->render('blog', ['posts' => $posts, 'pages' => $count]);
+        $this->render('blog', ['posts' => $posts, 'pages' => $pageCount, 'page' => $page]);
     }
 
     public function postForm()
